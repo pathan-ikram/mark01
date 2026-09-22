@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartSeva â€” Operator Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <div class="brand-icon"><i class="fa-solid fa-layer-group"></i></div>
+    <div class="brand-text">
+      <div class="brand-name">SmartSeva</div>
+      <div class="brand-sub" id="kendra-name-display">Operator Portal</div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-section">Main</div>
+    <div class="nav-item active" data-page="home"><i class="fa-solid fa-house"></i>Dashboard</div>
+    <div class="nav-item" data-page="customers"><i class="fa-solid fa-users"></i>Customers</div>
+
+    <div class="nav-section">Documents</div>
+    <div class="nav-item" data-page="new-doc"><i class="fa-solid fa-file-circle-plus"></i>New document</div>
+    <div class="nav-item" data-page="docs"><i class="fa-solid fa-folder-open"></i>All documents <span class="nav-badge" id="nav-doc-badge" style="display:none">0</span></div>
+    <div class="nav-item" data-page="timers"><i class="fa-solid fa-clock"></i>Timers &amp; status <span class="nav-badge danger" id="nav-timer-badge" style="display:none">0</span></div>
+
+    <div class="nav-section">Tools</div>
+    <div class="nav-item" data-page="income"><i class="fa-solid fa-chart-bar"></i>Daily income</div>
+    <div class="nav-item" data-page="portals"><i class="fa-solid fa-globe"></i>Gov portals</div>
+    <div class="nav-item" data-page="receipt"><i class="fa-solid fa-receipt"></i>Receipt generator</div>
+    <div class="nav-item" data-page="settings"><i class="fa-solid fa-gear"></i>Settings</div>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<div class="main-wrap">
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+    <div class="tb-title" id="page-title">Dashboard</div>
+    <div class="tb-right">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="global-search" placeholder="Search customer or documentâ€¦" autocomplete="off">
+        <div class="search-dropdown" id="search-dropdown"></div>
+      </div>
+      <div class="topbar-time" id="topbar-time"></div>
+    </div>
+  </header>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"><i class="fa-solid fa-check-circle"></i><span id="toast-msg">Saved</span></div>
+
+  <!-- PAGES -->
+  <main class="content">
+
+    <!-- HOME PAGE -->
+    <div class="page active" id="page-home">
+      <div class="stats-grid" id="home-stats"></div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head">
+            <span class="card-head-title"><i class="fa-solid fa-file-lines"></i> Recent documents</span>
+            <span class="badge blue" id="docs-today-count">0 today</span>
+          </div>
+          <div id="home-recent-docs"></div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <span class="card-head-title"><i class="fa-solid fa-triangle-exclamation"></i> Timer alerts</span>
+            <span class="badge" id="timer-alert-badge">checkingâ€¦</span>
+          </div>
+          <div id="home-timers"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOMERS PAGE -->
+    <div class="page" id="page-customers">
+      <div class="tab-bar">
+        <div class="tab active" data-tab="cust-list">All customers</div>
+        <div class="tab" data-tab="cust-add">Add customer</div>
+      </div>
+      <div class="tab-panel active" id="tab-cust-list">
+        <div class="section-head">
+          <span class="section-title" id="cust-count-label">0 customers</span>
+          <div class="search-inline">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="cust-search" placeholder="Filter by name or mobileâ€¦" oninput="filterCustomers(this.value)">
+          </div>
+        </div>
+        <div id="cust-list-wrap" class="card"></div>
+      </div>
+      <div class="tab-panel" id="tab-cust-add">
+        <div class="card form-card">
+          <div class="form-card-title">Customer details <span class="auto-badge"><i class="fa-solid fa-floppy-disk"></i> auto-saved</span></div>
+          <div class="form-grid">
+            <div class="form-row"><label>Full name *</label><input id="c-name" placeholder="Ramesh Salve" oninput="markDraft()"></div>
+            <div class="form-row"><label>Mobile number *</label><input id="c-mobile" placeholder="98765 43210" oninput="markDraft()"></div>
+            <div class="form-row"><label>Aadhaar number</label><input id="c-aadhaar" placeholder="XXXX XXXX XXXX" oninput="markDraft()"></div>
+            <div class="form-row"><label>Date of birth</label><input type="date" id="c-dob" oninput="markDraft()"></div>
+            <div class="form-row"><label>Father's name</label><input id="c-father" placeholder="Vishnu Salve" oninput="markDraft()"></div>
+            <div class="form-row"><label>Caste category</label>
+              <select id="c-caste">
+                <option>General</option><option>OBC</option><option>SC</option><option>ST</option><option>NT-A</option><option>NT-B</option><option>NT-C</option><option>NT-D</option><option>VJ/DT</option>
+              </select>
+            </div>
+            <div class="form-row"><label>Email</label><input type="email" id="c-email" placeholder="ramesh@email.com" oninput="markDraft()"></div>
+            <div class="form-row"><label>Village / Taluka</label><input id="c-village" placeholder="Shirur, Pune" oninput="markDraft()"></div>
+          </div>
+          <div class="form-row"><label>Full address</label><textarea id="c-address" rows="2" placeholder="House no., Village, Taluka, District, Maharashtra â€“ PIN" oninput="markDraft()"></textarea></div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="saveCustomer()"><i class="fa-solid fa-user-plus"></i> Save customer</button>
+            <button class="btn" onclick="clearCustForm()">Clear form</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW DOCUMENT PAGE -->
+    <div class="page" id="page-new-doc">
+      <div class="card form-card">
+        <div class="form-card-title">Build document <span class="auto-badge"><i class="fa-solid fa-floppy-disk"></i> auto-saves every change</span></div>
+
+        <div class="form-grid">
+          <div class="form-row">
+            <label>Service type *</label>
+            <select id="d-service" onchange="onServiceChange()">
+              <option value="">â€” select service â€”</option>
+              <option>Income Certificate</option>
+              <option>Caste Certificate</option>
+              <option>Domicile Certificate</option>
+              <option>PAN Card</option>
+              <option>Aadhaar Update</option>
+              <option>PM Kisan Registration</option>
+              <option>Passport Application</option>
+              <option>Driving License</option>
+              <option>Scholarship</option>
+              <option>Property Record (7/12)</option>
+              <option>PMAY Housing</option>
+              <option>Ayushman Bharat</option>
+              <option>Birth Certificate</option>
+              <option>Death Certificate</option>
+              <option>Marriage Certificate</option>
+            </select>
+          </div>
+          <div class="form-row" style="position:relative">
+            <label>Customer mobile *</label>
+            <input id="d-mobile" placeholder="98765 43210" oninput="onDocMobileInput(this.value)" autocomplete="off">
+            <div class="autofill-dropdown" id="autofill-dd"></div>
+          </div>
+        </div>
+
+        <div class="autofill-banner" id="autofill-banner" style="display:none">
+          <i class="fa-solid fa-circle-check"></i> Customer found â€” details auto-filled from database
+        </div>
+
+        <div class="form-grid">
+          <div class="form-row"><label>Customer name *</label><input id="d-name" placeholder="Auto-filled from database" oninput="markDraft()"></div>
+          <div class="form-row"><label>Aadhaar number</label><input id="d-aadhaar" placeholder="Auto-filled" oninput="markDraft()"></div>
+          <div class="form-row"><label>Father's name</label><input id="d-father" placeholder="Auto-filled" oninput="markDraft()"></div>
+          <div class="form-row"><label>Caste</label><input id="d-caste" placeholder="Auto-filled" oninput="markDraft()"></div>
+        </div>
+        <div class="form-row"><label>Address</label><input id="d-address" placeholder="Auto-filled from database" oninput="markDraft()"></div>
+
+        <div class="checklist-box" id="doc-checklist" style="display:none">
+          <div class="checklist-title"><i class="fa-solid fa-list-check"></i> Required documents checklist</div>
+          <div id="checklist-items"></div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-row">
+            <label>Submission date *</label>
+            <input type="date" id="d-submitted" oninput="onServiceChange(); markDraft()">
+          </div>
+          <div class="form-row">
+            <label>Service fee (â‚¹)</label>
+            <input type="number" id="d-fee" placeholder="80" min="0" oninput="markDraft()">
+          </div>
+          <div class="form-row">
+            <label>Application / Reference no.</label>
+            <input id="d-ref" placeholder="MH/2026/XXXXXX" oninput="markDraft()">
+          </div>
+          <div class="form-row">
+            <label>Expected delivery <span class="auto-calc-label">(auto-calculated)</span></label>
+            <input type="date" id="d-expected" readonly>
+          </div>
+        </div>
+
+        <div class="info-strip" id="service-info-strip" style="display:none"></div>
+
+        <div class="form-row"><label>Notes / Remarks</label><input id="d-notes" placeholder="Any special instructions or follow-up required" oninput="markDraft()"></div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="saveDocument()"><i class="fa-solid fa-file-circle-check"></i> Save document &amp; start timer</button>
+          <button class="btn" onclick="clearDocForm()"><i class="fa-solid fa-rotate-left"></i> Clear form</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALL DOCUMENTS PAGE -->
+    <div class="page" id="page-docs">
+      <div class="tab-bar">
+        <div class="tab active" data-tab-docs="all">All</div>
+        <div class="tab" data-tab-docs="processing">Processing</div>
+        <div class="tab" data-tab-docs="done">Done</div>
+        <div class="tab" data-tab-docs="overdue">Overdue</div>
+      </div>
+      <div style="padding:12px 0">
+        <div id="docs-list-wrap" class="card"></div>
+      </div>
+    </div>
+
+    <!-- TIMERS PAGE -->
+    <div class="page" id="page-timers">
+      <div class="section-head" style="margin-bottom:14px">
+        <span class="section-title">Government document timers</span>
+        <span class="badge blue" id="timer-page-count">0 active</span>
+      </div>
+      <div id="timers-list"></div>
+    </div>
+
+    <!-- INCOME PAGE -->
+    <div class="page" id="page-income">
+      <div class="tab-bar">
+        <div class="tab active" data-tab-income="today">Today</div>
+        <div class="tab" data-tab-income="week">This week</div>
+        <div class="tab" data-tab-income="month">This month</div>
+        <div class="tab" data-tab-income="all">All time</div>
+      </div>
+      <div style="padding:12px 0">
+        <div class="stats-grid" id="income-stats"></div>
+        <div class="card" id="income-list"></div>
+        <div class="income-total-bar">
+          <span>Total</span>
+          <span id="income-total">â‚¹0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTALS PAGE -->
+    <div class="page" id="page-portals">
+      <div class="section-head" style="margin-bottom:14px">
+        <span class="section-title">Government portals</span>
+        <span style="font-size:12px;color:#888">Click to open in new tab</span>
+      </div>
+      <div class="portals-grid" id="portals-grid"></div>
+    </div>
+
+    <!-- RECEIPT PAGE -->
+    <div class="page" id="page-receipt">
+      <div class="two-col" style="align-items:flex-start">
+        <div class="card form-card">
+          <div class="form-card-title">Generate receipt</div>
+          <div class="form-row"><label>Select document</label>
+            <select id="r-doc-select" onchange="onReceiptDocSelect()">
+              <option value="">â€” select a document â€”</option>
+            </select>
+          </div>
+          <div class="form-grid">
+            <div class="form-row"><label>Customer name</label><input id="r-name" placeholder="Ramesh Salve"></div>
+            <div class="form-row"><label>Service</label><input id="r-service" placeholder="Income Certificate"></div>
+            <div class="form-row"><label>Amount (â‚¹)</label><input type="number" id="r-amount" placeholder="80"></div>
+            <div class="form-row"><label>Date</label><input type="date" id="r-date"></div>
+          </div>
+          <div class="form-row"><label>Reference no.</label><input id="r-ref" placeholder="MH/2026/XXXXXX"></div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="generateReceipt()"><i class="fa-solid fa-receipt"></i> Generate receipt</button>
+            <button class="btn" onclick="printReceipt()"><i class="fa-solid fa-print"></i> Print</button>
+          </div>
+        </div>
+        <div class="receipt-preview" id="receipt-preview">
+          <div class="receipt-placeholder"><i class="fa-solid fa-receipt"></i><br>Receipt will appear here</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS PAGE -->
+    <div class="page" id="page-settings">
+      <div class="two-col" style="align-items:flex-start">
+        <div class="card form-card">
+          <div class="form-card-title">Kendra information</div>
+          <div class="form-grid">
+            <div class="form-row"><label>Kendra name</label><input id="s-kendra" placeholder="Aamhi Seva Kendra"></div>
+            <div class="form-row"><label>Operator name</label><input id="s-operator" placeholder="Ravi Jadhav"></div>
+            <div class="form-row"><label>Village / Town</label><input id="s-village" placeholder="Shirur, Pune"></div>
+            <div class="form-row"><label>Mobile</label><input id="s-mobile" placeholder="98765 00000"></div>
+          </div>
+          <div class="form-row"><label>Address</label><input id="s-address" placeholder="Full kendra address"></div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="saveSettings()"><i class="fa-solid fa-floppy-disk"></i> Save settings</button>
+          </div>
+        </div>
+        <div>
+          <div class="card form-card" style="margin-bottom:12px">
+            <div class="form-card-title">Storage info</div>
+            <div id="storage-info" style="font-size:13px;color:#555;line-height:1.7"></div>
+          </div>
+          <div class="card form-card" style="border:1px solid #fca5a5">
+            <div class="form-card-title" style="color:#dc2626">Danger zone</div>
+            <p style="font-size:12px;color:#888;margin-bottom:12px">This will permanently delete all customers and documents stored in this browser.</p>
+            <button class="btn btn-danger" onclick="clearAllData()"><i class="fa-solid fa-trash"></i> Clear all data</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- CUSTOMER PROFILE MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal()"></div>
+<div class="modal" id="cust-modal">
+  <div class="modal-head">
+    <span class="modal-title" id="modal-title">Customer profile</span>
+    <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="modal-body" id="modal-body"></div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
