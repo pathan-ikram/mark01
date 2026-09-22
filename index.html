@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI HUB — One Platform. Every AI Tool.</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Tokens ─────────────────────────────────────────────── */
+:root {
+  --bg:       #f4f5f7;
+  --surface:  #ffffff;
+  --border:   #e5e7eb;
+  --border-strong: #d1d5db;
+  --cyan:     #2563eb;
+  --cyan-dim: #1d4ed8;
+  --violet:   #7c3aed;
+  --green:    #16a34a;
+  --text:     #111827;
+  --muted:    #9ca3af;
+  --card-bg:  #ffffff;
+  --accent-bg: #eff6ff;
+  --success-bg: #f0fdf4;
+  --success-bg-2: #dcfce7;
+  --purple-bg: #f5f3ff;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'Inter', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(37,99,235,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Nav ─────────────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 60px;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700; letter-spacing: -0.5px;
+  display: flex; align-items: center; gap: 8px;
+}
+.logo-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--cyan); box-shadow: 0 0 10px var(--cyan);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:.5; transform:scale(.7); }
+}
+nav ul { display: flex; list-style: none; gap: 36px; align-items: center; }
+nav ul li a { font-size: 14px; font-weight: 500; color: var(--muted); letter-spacing: .3px; transition: color .2s; }
+nav ul li a:hover { color: var(--text); }
+.nav-cta {
+  padding: 9px 22px; background: var(--cyan); color: #000 !important;
+  border-radius: 6px; font-weight: 600 !important; font-size: 14px !important;
+  transition: background .2s, transform .15s !important;
+}
+.nav-cta:hover { background: var(--cyan-dim) !important; transform: translateY(-1px); }
+
+/* ── Hero ────────────────────────────────────────────────── */
+.hero {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 130px 24px 110px;
+}
+.hero::before {
+  content: ''; position: absolute; top: 0; left: 50%;
+  transform: translateX(-50%); width: 800px; height: 500px;
+  background: radial-gradient(ellipse at center top, rgba(37,99,235,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border: 1px solid var(--border); border-radius: 100px;
+  font-size: 12px; font-weight: 500; color: var(--cyan);
+  letter-spacing: .8px; text-transform: uppercase; margin-bottom: 32px;
+  background: rgba(37,99,235,.05);
+}
+.hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 7vw, 80px); font-weight: 700;
+  line-height: 1.05; letter-spacing: -2px; max-width: 820px; margin-bottom: 24px;
+}
+.hero h1 .shimmer {
+  background: linear-gradient(90deg, var(--cyan) 0%, #a78bfa 50%, var(--cyan) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer { to { background-position: 200% center; } }
+.hero p { font-size: 18px; color: var(--muted); max-width: 520px; margin-bottom: 48px; line-height: 1.7; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.btn-primary {
+  padding: 15px 36px; background: var(--cyan); color: #fff;
+  border: none; border-radius: 8px; font-size: 15px; font-weight: 700;
+  font-family: var(--font-body); cursor: pointer; letter-spacing: .2px;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  box-shadow: 0 0 28px rgba(37,99,235,.25);
+}
+.btn-primary:hover { background: var(--cyan-dim); transform: translateY(-2px); box-shadow: 0 0 40px rgba(37,99,235,.4); }
+.btn-secondary {
+  padding: 15px 36px; background: transparent; color: var(--text);
+  border: 1px solid var(--border); border-radius: 8px; font-size: 15px; font-weight: 500;
+  font-family: var(--font-body); cursor: pointer; transition: border-color .2s, background .2s;
+}
+.btn-secondary:hover { border-color: var(--cyan); background: rgba(37,99,235,.05); }
+.hero-stats { display: flex; gap: 60px; margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--border); }
+.stat-item { text-align: center; }
+.stat-number { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--cyan); display: block; }
+.stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+/* ── Live Stats Bar ──────────────────────────────────────── */
+.live-bar {
+  position: relative; z-index: 1;
+  background: linear-gradient(90deg, rgba(37,99,235,.06), rgba(124,58,237,.06));
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 14px 60px;
+  display: flex; align-items: center; justify-content: center; gap: 48px;
+  font-size: 13px;
+}
+.live-stat { display: flex; align-items: center; gap: 8px; }
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); }
+.live-val { font-weight: 700; color: var(--cyan); font-family: var(--font-display); font-size: 15px; }
+.live-label { color: var(--muted); }
+
+/* ── Section label ───────────────────────────────────────── */
+.section-eyebrow {
+  display: block; font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px;
+}
+
+/* ── Features ────────────────────────────────────────────── */
+.features-section {
+  position: relative; z-index: 1;
+  padding: 100px 60px; max-width: 1280px; margin: 0 auto;
+}
+.features-header { margin-bottom: 60px; }
+.features-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px); font-weight: 700;
+  letter-spacing: -1px; line-height: 1.1;
+}
+.features-header h2 span { color: var(--muted); font-weight: 400; }
+.features-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 2px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+}
+.card {
+  background: var(--card-bg); padding: 40px 36px;
+  display: flex; flex-direction: column; gap: 16px;
+  transition: background .25s; cursor: default;
+}
+.card:hover { background: #131f35; }
+.card-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; background: rgba(37,99,235,.08);
+  border: 1px solid rgba(37,99,235,.15);
+}
+.card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--text); }
+.card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+.card-tag {
+  margin-top: auto; display: inline-block; font-size: 11px;
+  font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--cyan); opacity: .7;
+}
+
+/* ── SmartSeva Feature Card (special) ───────────────────── */
+.card.smartseva-card {
+  background: linear-gradient(135deg, var(--success-bg) 0%, var(--surface) 100%);
+  border: 1px solid rgba(22,163,74,.25);
+  position: relative; overflow: hidden; cursor: pointer;
+  grid-column: span 2;
+}
+.card.smartseva-card::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 240px; height: 240px;
+  background: radial-gradient(ellipse, rgba(22,163,74,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.card.smartseva-card:hover { background: linear-gradient(135deg, var(--success-bg-2) 0%, var(--bg) 100%); }
+.smartseva-inner { display: flex; align-items: flex-start; gap: 32px; flex-wrap: wrap; }
+.smartseva-left { flex: 1; min-width: 280px; }
+.smartseva-icon {
+  width: 54px; height: 54px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  background: rgba(22,163,74,.12); border: 1px solid rgba(22,163,74,.3);
+  margin-bottom: 16px;
+}
+.smartseva-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 6px;
+  background: rgba(22,163,74,.15); border: 1px solid rgba(22,163,74,.3);
+  font-size: 11px; font-weight: 600; color: #16a34a;
+  letter-spacing: .5px; text-transform: uppercase; margin-bottom: 12px;
+}
+.smartseva-card h3 { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.smartseva-card p { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 460px; }
+.smartseva-features { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.sf-chip {
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 11px; border-radius: 6px;
+  background: rgba(22,163,74,.08); border: 1px solid rgba(22,163,74,.2);
+  font-size: 12px; color: #15803d;
+}
+.smartseva-right { display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; align-self: center; }
+.ss-mini-stat {
+  background: rgba(22,163,74,.06); border: 1px solid rgba(22,163,74,.2);
+  border-radius: 10px; padding: 12px 16px; min-width: 160px;
+}
+.ss-mini-val { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #16a34a; }
+.ss-mini-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.btn-goto-seva {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px; border-radius: 8px;
+  background: #16a34a; color: #fff;
+  font-size: 14px; font-weight: 700; border: none;
+  cursor: pointer; font-family: var(--font-body);
+  transition: background .2s, transform .15s;
+  margin-top: 8px;
+}
+.btn-goto-seva:hover { background: #15803d; transform: translateY(-1px); }
+
+/* ── How it works ────────────────────────────────────────── */
+.how-section {
+  position: relative; z-index: 1;
+  padding: 100px 60px; max-width: 1280px; margin: 0 auto;
+}
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 60px; }
+.step { display: flex; flex-direction: column; gap: 16px; }
+.step-num { font-family: var(--font-display); font-size: 48px; font-weight: 700; color: var(--border); line-height: 1; letter-spacing: -2px; }
+.step h3 { font-family: var(--font-display); font-size: 20px; font-weight: 600; }
+.step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+/* ── CTA ─────────────────────────────────────────────────── */
+.cta-section {
+  position: relative; z-index: 1;
+  margin: 40px 60px 80px; border-radius: 20px; overflow: hidden;
+  background: linear-gradient(135deg, var(--accent-bg) 0%, var(--surface) 50%, var(--purple-bg) 100%);
+  border: 1px solid var(--border); padding: 80px 60px; text-align: center;
+}
+.cta-section::before {
+  content: ''; position: absolute; top: -80px; left: 50%;
+  transform: translateX(-50%); width: 600px; height: 300px;
+  background: radial-gradient(ellipse, rgba(124,58,237,.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-section h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: -1.5px; margin-bottom: 16px; }
+.cta-section p { font-size: 16px; color: var(--muted); max-width: 440px; margin: 0 auto 40px; }
+
+/* ── Footer ──────────────────────────────────────────────── */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border); padding: 40px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-logo { font-family: var(--font-display); font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.footer-links { display: flex; gap: 32px; list-style: none; }
+.footer-links a { font-size: 13px; color: var(--muted); transition: color .2s; }
+.footer-links a:hover { color: var(--text); }
+.footer-copy { font-size: 13px; color: var(--muted); }
+
+/* ── Reveal ──────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .hero { padding: 90px 24px 80px; }
+  .hero-stats { gap: 32px; }
+  .features-section, .how-section { padding: 70px 24px; }
+  .card.smartseva-card { grid-column: span 2; }
+  .steps { grid-template-columns: 1fr; gap: 32px; }
+  .cta-section { margin: 24px 24px 60px; padding: 60px 28px; }
+  footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 24px; }
+  .footer-links { justify-content: center; }
+  .live-bar { padding: 14px 24px; gap: 24px; flex-wrap: wrap; }
+}
+@media (max-width: 600px) {
+  nav ul li:not(:last-child) { display: none; }
+  .hero h1 { letter-spacing: -1px; }
+  .hero-stats { flex-direction: column; gap: 24px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .smartseva-inner { flex-direction: column; }
+  .smartseva-right { flex-direction: row; flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shimmer, .logo-dot { animation: none; }
+  .reveal { opacity:1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Nav ───────────────────────────────────────────────── -->
+<nav>
+  <div class="logo"><span class="logo-dot"></span>AI HUB</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#features">Features</a></li>
+    <li id="nav-documents" style="display:none"><a href="documents.html">📄 AI Documents</a></li>
+    <li id="nav-myfiles" style="display:none"><a href="myfiles.html">📁 My Files</a></li>
+    <li id="nav-smartseva" style="display:none"><a href="smartseva.html" class="nav-cta">SmartSeva</a></li>
+    <li id="nav-login"><a href="login.html" class="nav-cta">Login</a></li>
+    <li id="nav-logout" style="display:none"><a href="#" onclick="logout();return false;">Logout</a></li>
+  </ul>
+</nav>
+
+<!-- ── Live Stats Bar ────────────────────────────────────── -->
+<div class="live-bar" id="live-bar">
+  <div class="live-stat"><span class="live-dot"></span><span class="live-val" id="lb-customers">0</span><span class="live-label">customers stored</span></div>
+  <div class="live-stat"><span class="live-dot"></span><span class="live-val" id="lb-docs">0</span><span class="live-label">documents created</span></div>
+  <div class="live-stat"><span class="live-dot"></span><span class="live-val" id="lb-income">₹0</span><span class="live-label">income tracked</span></div>
+  <div class="live-stat"><span class="live-dot"></span><span class="live-val" id="lb-pending">0</span><span class="live-label">pending timers</span></div>
+</div>
+
+<!-- ── Hero ──────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-eyebrow"><span></span> Now in public beta</div>
+  <h1>One chat.<br><span class="shimmer">Endless possibilities.</span></h1>
+  <p>Talk to AI, analyse your documents, and manage government services for your customers — all from a single dashboard.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="goToSmartSeva()">Open SmartSeva →</button>
+    <button class="btn-secondary" onclick="goToDocuments()">📄 AI Documents</button>
+    <button class="btn-secondary" onclick="goToMyFiles()">📁 My Files</button>
+    <a href="#features"><button class="btn-secondary">See what's inside</button></a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><span class="stat-number">3</span><span class="stat-label">AI tools built in</span></div>
+    <div class="stat-item"><span class="stat-number">10×</span><span class="stat-label">faster than switching tabs</span></div>
+    <div class="stat-item"><span class="stat-number">Free</span><span class="stat-label">to get started</span></div>
+  </div>
+</section>
+
+<!-- ── Features ──────────────────────────────────────────── -->
+<section class="features-section" id="features">
+  <div class="features-header reveal">
+    <span class="section-eyebrow">What's inside</span>
+  </div>
+
+  <div class="features-grid">
+
+    <!-- SmartSeva MEGA CARD -->
+    <div class="card smartseva-card reveal" onclick="goToSmartSeva()">
+      <div class="smartseva-inner">
+        <div class="smartseva-left">
+          <div class="smartseva-badge">⚡ Connected to AI Hub</div>
+          <div class="smartseva-icon">🏛️</div>
+          <h3>SmartSeva — Government Services Platform</h3>
+          <p>Manage all government document work for your customers from one dashboard. Customer database with auto-fill, live timers for every government document, income tracking, receipt generation, and AI-powered form assistance. Built for CSC / cyber café operators in Maharashtra.</p>
+          <div class="smartseva-features">
+            <span class="sf-chip">🗄️ Customer database</span>
+            <span class="sf-chip">⏱️ Document timers</span>
+            <span class="sf-chip">🤖 AI Chat</span>
+            <span class="sf-chip">🏛️ 15 gov portals</span>
+            <span class="sf-chip">🧾 Receipt generator</span>
+            <span class="sf-chip">📊 Income tracker</span>
+            <span class="sf-chip">📄 AI Documents</span>
+          </div>
+          <button class="btn-goto-seva" onclick="event.stopPropagation();goToSmartSeva()">
+            Open SmartSeva Dashboard →
+          </button>
+        </div>
+        <div class="smartseva-right">
+          <div class="ss-mini-stat">
+            <div class="ss-mini-val" id="ss-customers">0</div>
+            <div class="ss-mini-label">Customers saved</div>
+          </div>
+          <div class="ss-mini-stat">
+            <div class="ss-mini-val" id="ss-docs">0</div>
+            <div class="ss-mini-label">Documents stored</div>
+          </div>
+          <div class="ss-mini-stat">
+            <div class="ss-mini-val" id="ss-income">₹0</div>
+            <div class="ss-mini-label">Total income tracked</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="card-icon">🤖</div>
+      <h3>AI Chat</h3>
+      <p>One chat. Endless possibilities.</p>
+      <span class="card-tag">Conversational AI</span>
+    </div>
+
+    <div class="card reveal">
+      <div class="card-icon">📄</div>
+      <h3>AI Documents</h3>
+      <p>Write smarter. Read faster. Work better.</p>
+      <span class="card-tag">Document AI</span>
+    </div>
+
+    <div class="card reveal" onclick="goToMyFiles()" style="cursor:pointer">
+      <div class="card-icon">📁</div>
+      <h3>My Files</h3>
+      <p>Upload, organize, and manage all your files in one place.</p>
+      <span class="card-tag">File Manager</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── How it works ───────────────────────────────────────── -->
+<section class="how-section">
+  <span class="section-eyebrow reveal">How it works</span>
+  <div class="steps">
+    <div class="step reveal">
+      <span class="step-num">01</span>
+      <h3>Add your customers</h3>
+      <p>Enter customer details once in SmartSeva. Name, mobile, Aadhaar, address — stored permanently in your browser.</p>
+    </div>
+    <div class="step reveal">
+      <span class="step-num">02</span>
+      <h3>Build a document</h3>
+      <p>Select service type. Type mobile number. Customer details auto-fill instantly. AI sets the government timer automatically.</p>
+    </div>
+    <div class="step reveal">
+      <span class="step-num">03</span>
+      <h3>Track & deliver</h3>
+      <p>Live countdown timers show days remaining. Get alerts when documents are overdue. Mark done, generate receipt, collect payment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ───────────────────────────────────────────────── -->
+<section class="cta-section reveal">
+  <h2>Start now — it's free</h2>
+  <p>Chat with AI, analyse your documents, and manage government services all in one place.</p>
+  <button class="btn-primary" onclick="goToSmartSeva()">Open SmartSeva Dashboard →</button>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">
+    <span style="width:7px;height:7px;background:var(--cyan);border-radius:50%;box-shadow:0 0 8px var(--cyan);display:inline-block"></span>
+    AI HUB
+  </div>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 AI HUB. All rights reserved.</span>
+</footer>
+
+<script>
+// ── Auth check — toggles nav links based on login state ──────
+function isLoggedIn() {
+  return !!localStorage.getItem('token');
+}
+
+function updateAuthUI() {
+  const loggedIn = isLoggedIn();
+  document.getElementById('nav-documents').style.display = loggedIn ? '' : 'none';
+  document.getElementById('nav-myfiles').style.display = loggedIn ? '' : 'none';
+  document.getElementById('nav-smartseva').style.display = loggedIn ? '' : 'none';
+  document.getElementById('nav-login').style.display = loggedIn ? 'none' : '';
+  document.getElementById('nav-logout').style.display = loggedIn ? '' : 'none';
+}
+
+function goToSmartSeva() {
+  if (isLoggedIn()) {
+    window.location.href = 'smartseva.html';
+  } else {
+    window.location.href = 'login.html';
+  }
+}
+
+function goToDocuments() {
+  if (isLoggedIn()) {
+    window.location.href = 'documents.html';
+  } else {
+    window.location.href = 'login.html';
+  }
+}
+
+function goToMyFiles() {
+  if (isLoggedIn()) {
+    window.location.href = 'myfiles.html';
+  } else {
+    window.location.href = 'login.html';
+  }
+}
+
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  updateAuthUI();
+  window.location.href = 'index.html';
+}
+
+updateAuthUI();
+
+// ── Scroll reveal ────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Live stats from shared SmartSeva DB ─────────────────────
+function loadLiveStats() {
+  try {
+    const raw = localStorage.getItem('smartseva_db');
+    if (!raw) return;
+    const db = JSON.parse(raw);
+    const customers = (db.customers || []).length;
+    const docs = (db.documents || []).length;
+    const income = (db.documents || []).reduce((s, d) => s + (d.fee || 0), 0);
+    const pending = (db.documents || []).filter(d => d.status !== 'Done').length;
+
+    document.getElementById('lb-customers').textContent = customers;
+    document.getElementById('lb-docs').textContent = docs;
+    document.getElementById('lb-income').textContent = '₹' + income.toLocaleString('en-IN');
+    document.getElementById('lb-pending').textContent = pending;
+
+    document.getElementById('ss-customers').textContent = customers;
+    document.getElementById('ss-docs').textContent = docs;
+    document.getElementById('ss-income').textContent = '₹' + income.toLocaleString('en-IN');
+  } catch(e) {}
+}
+loadLiveStats();
+setInterval(loadLiveStats, 5000);
+window.addEventListener('storage', e => { if (e.key === 'smartseva_db') loadLiveStats(); });
+</script>
+
+</body>
+</html>

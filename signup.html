@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up — AI HUB</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: #080c14;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,229,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  background: #0d1424;
+  border: 1px solid #1a2540;
+  border-radius: 20px;
+  padding: 44px 40px;
+  box-shadow: 0 0 60px rgba(0,229,255,.06);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  text-decoration: none;
+}
+
+.logo-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #00e5ff;
+  box-shadow: 0 0 10px #00e5ff;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+.logo-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.card h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.card .subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 32px;
+}
+
+#error-banner {
+  display: none;
+  background: rgba(239,68,68,.1);
+  border: 1px solid rgba(239,68,68,.3);
+  color: #fca5a5;
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#success-banner {
+  display: none;
+  background: rgba(34,197,94,.1);
+  border: 1px solid rgba(34,197,94,.3);
+  color: #86efac;
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.input-group { margin-bottom: 18px; }
+
+.input-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #94a3b8;
+  margin-bottom: 7px;
+}
+
+.input-wrap { position: relative; }
+
+.input-wrap input,
+.input-wrap select {
+  width: 100%;
+  padding: 12px 16px;
+  padding-right: 44px;
+  background: #0a1020;
+  border: 1px solid #1a2540;
+  border-radius: 10px;
+  color: #e2e8f0;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.input-wrap select { padding-right: 16px; }
+
+.input-wrap input::placeholder { color: #334155; }
+
+.input-wrap input:focus,
+.input-wrap select:focus {
+  border-color: #00e5ff;
+  box-shadow: 0 0 0 3px rgba(0,229,255,.1);
+}
+
+.input-wrap input.error { border-color: rgba(239,68,68,.6); }
+
+.toggle-pw {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #475569;
+  font-size: 16px;
+  padding: 4px;
+  line-height: 1;
+  transition: color .2s;
+  width: auto;
+}
+
+.toggle-pw:hover { color: #00e5ff; }
+
+.field-error {
+  font-size: 12px;
+  color: #f87171;
+  margin-top: 5px;
+  display: none;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 13px;
+  background: #00e5ff;
+  color: #051015;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  letter-spacing: .2px;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  box-shadow: 0 0 24px rgba(0,229,255,.2);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-login:hover {
+  background: #00ccdd;
+  transform: translateY(-1px);
+  box-shadow: 0 0 36px rgba(0,229,255,.35);
+}
+
+.btn-login:active { transform: scale(.98); }
+
+.btn-login:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.spinner {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(0,0,0,.3);
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  display: none;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #1a2540;
+}
+
+.divider span { font-size: 12px; color: #475569; }
+
+.links {
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.links a {
+  color: #00e5ff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity .2s;
+}
+
+.links a:hover { opacity: .7; }
+
+.back-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.back-link a {
+  font-size: 13px;
+  color: #475569;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color .2s;
+}
+
+.back-link a:hover { color: #94a3b8; }
+
+.rate-notice {
+  text-align: center;
+  font-size: 11px;
+  color: #334155;
+  margin-top: 20px;
+}
+
+@media (max-width: 480px) {
+  .card { padding: 32px 24px; }
+  .input-row { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <a href="index.html" class="logo">
+    <div class="logo-dot"></div>
+    <span class="logo-text">AI HUB</span>
+  </a>
+
+  <h1>Create your account</h1>
+  <p class="subtitle">Join AI HUB — it's free to get started</p>
+
+  <div id="error-banner"></div>
+  <div id="success-banner"></div>
+
+  <form id="signup-form" novalidate>
+
+    <div class="input-group">
+      <label for="fullname">Full name</label>
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="fullname"
+          name="fullname"
+          placeholder="Jane Doe"
+          autocomplete="name"
+          required />
+      </div>
+      <div class="field-error" id="fullname-error">Please enter your full name.</div>
+    </div>
+
+    <div class="input-group">
+      <label for="username">Username</label>
+      <div class="input-wrap">
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="janedoe"
+          autocomplete="username"
+          required />
+      </div>
+      <div class="field-error" id="username-error">Username must be at least 10 characters, letters/numbers/underscores only.</div>
+    </div>
+
+    <div class="input-group">
+      <label for="email">Email address</label>
+      <div class="input-wrap">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required />
+      </div>
+      <div class="field-error" id="email-error">Enter a valid email address.</div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-group">
+        <label for="phone">Phone (optional)</label>
+        <div class="input-wrap">
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="9876543210"
+            autocomplete="tel" />
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="country">Country (optional)</label>
+        <div class="input-wrap">
+          <input
+            type="text"
+            id="country"
+            name="country"
+            placeholder="India"
+            autocomplete="country-name" />
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label for="password">Password</label>
+      <div class="input-wrap">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="••••••••"
+          autocomplete="new-password"
+          required
+          minlength="8" />
+        <button type="button" class="toggle-pw" id="toggle-pw" aria-label="Show password">👁</button>
+      </div>
+      <div class="field-error" id="password-error">Password must be at least 8 characters.</div>
+    </div>
+
+    <div class="input-group">
+      <label for="confirm-password">Confirm password</label>
+      <div class="input-wrap">
+        <input
+          type="password"
+          id="confirm-password"
+          name="confirm-password"
+          placeholder="••••••••"
+          autocomplete="new-password"
+          required />
+      </div>
+      <div class="field-error" id="confirm-password-error">Passwords do not match.</div>
+    </div>
+
+    <button type="submit" class="btn-login" id="signup-btn">
+      <span id="btn-text">Create account</span>
+      <div class="spinner" id="spinner"></div>
+    </button>
+
+  </form>
+
+  <div class="divider"><span>or</span></div>
+
+  <div class="links">
+    <p>Already have an account? <a href="login.html">Sign in</a></p>
+  </div>
+
+  <div class="back-link">
+    <a href="index.html">← Back to home</a>
+  </div>
+
+  <p class="rate-notice">🔒 Your password is hashed and never stored in plain text.</p>
+
+</div>
+
+<script>
+
+const API_BASE = "http://localhost:3000/api";
+
+// ── Helpers ──────────────────────────────────────────────────
+function showError(msg) {
+  const banner = document.getElementById('error-banner');
+  document.getElementById('success-banner').style.display = 'none';
+  banner.textContent = msg;
+  banner.style.display = 'block';
+}
+
+function showSuccess(msg) {
+  const banner = document.getElementById('success-banner');
+  document.getElementById('error-banner').style.display = 'none';
+  banner.textContent = msg;
+  banner.style.display = 'block';
+}
+
+function hideBanners() {
+  document.getElementById('error-banner').style.display = 'none';
+  document.getElementById('success-banner').style.display = 'none';
+}
+
+function setLoading(on) {
+  document.getElementById('signup-btn').disabled = on;
+  document.getElementById('btn-text').textContent = on ? 'Creating account…' : 'Create account';
+  document.getElementById('spinner').style.display = on ? 'block' : 'none';
+}
+
+function markField(id, errorId, valid) {
+  document.getElementById(id).classList.toggle('error', !valid);
+  document.getElementById(errorId).style.display = valid ? 'none' : 'block';
+}
+
+// ── Toggle password visibility ───────────────────────────────
+document.getElementById('toggle-pw').addEventListener('click', function () {
+  const pw = document.getElementById('password');
+  const confirmPw = document.getElementById('confirm-password');
+  const isHidden = pw.type === 'password';
+  pw.type = isHidden ? 'text' : 'password';
+  confirmPw.type = isHidden ? 'text' : 'password';
+  this.textContent = isHidden ? '🙈' : '👁';
+});
+
+// ── Clear errors on input ────────────────────────────────────
+['fullname', 'username', 'email', 'password', 'confirm-password'].forEach((id) => {
+  document.getElementById(id).addEventListener('input', function () {
+    markField(id, id + '-error', true);
+    hideBanners();
+  });
+});
+
+// ── Redirect if already logged in ────────────────────────────
+if (localStorage.getItem('token')) {
+  window.location.href = 'dashboard.html';
+}
+
+// ── Form submit ──────────────────────────────────────────────
+document.getElementById('signup-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  hideBanners();
+
+  const fullname        = document.getElementById('fullname').value.trim();
+  const username         = document.getElementById('username').value.trim();
+  const email            = document.getElementById('email').value.trim();
+  const phone            = document.getElementById('phone').value.trim();
+  const country          = document.getElementById('country').value.trim();
+  const password         = document.getElementById('password').value;
+  const confirmPassword  = document.getElementById('confirm-password').value;
+
+  const fullnameOk = fullname.length > 0;
+  const usernameOk = /^[a-zA-Z0-9_]{10,50}$/.test(username);
+  const emailOk    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const passOk     = password.length >= 8;
+  const confirmOk  = password === confirmPassword && confirmPassword.length > 0;
+
+  markField('fullname', 'fullname-error', fullnameOk);
+  markField('username', 'username-error', usernameOk);
+  markField('email', 'email-error', emailOk);
+  markField('password', 'password-error', passOk);
+  markField('confirm-password', 'confirm-password-error', confirmOk);
+
+  if (!fullnameOk || !usernameOk || !emailOk || !passOk || !confirmOk) return;
+
+  setLoading(true);
+
+  try {
+    const res = await fetch(`${API_BASE}/auth/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fullname,
+        username: username || null,
+        email,
+        password,
+        phone: phone || null,
+        country: country || null
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.success) {
+      showError(data.message || 'Could not create account.');
+      return;
+    }
+
+    // If the backend issues a token on signup, log the user in immediately
+    if (data.token) {
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      showSuccess('Account created! Redirecting…');
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 800);
+    } else {
+      // No token returned — send to login instead
+      showSuccess('Account created! Redirecting to sign in…');
+      setTimeout(() => { window.location.href = 'login.html'; }, 1200);
+    }
+
+  } catch (err) {
+    console.error(err);
+    showError('Could not reach the server. Please make sure the backend is running and try again.');
+  } finally {
+    setLoading(false);
+  }
+});
+</script>
+<script src="js/signup.js"></script>
+
+
+</body>
+</html>
