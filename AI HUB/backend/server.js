@@ -266,12 +266,12 @@ async function startServer() {
         await db.query("SELECT 1");
         console.log("✅ MariaDB Connected");
 
-        app.listen(PORT, () => {
-            console.log(`\n✅ AI HUB running at http://localhost:${PORT}`);
-            console.log(`   Ollama  → ${OLLAMA_URL}`);
-            console.log(`   ComfyUI → ${COMFY_URL}`);
-            console.log(`   Health  → http://localhost:${PORT}/api/health`);
-        });
+        app.listen(PORT, "0.0.0.0", () => {
+    console.log(`\n✅ AI HUB running at http://10.230.22.186:${PORT}`);
+    console.log(`   Ollama  → ${OLLAMA_URL}`);
+    console.log(`   ComfyUI → ${COMFY_URL}`);
+    console.log(`   Health  → http://10.230.22.186:${PORT}/api/health`);
+});
 
     } catch (err) {
         console.error("❌ Database Connection Failed");
