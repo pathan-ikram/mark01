@@ -459,7 +459,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
  
   try {
     // Send to your server login endpoint
-    const res = await fetch("http://localhost:3000/api/auth/login", {
+    const res = await fetch("http://10.230.22.186:3000/api/auth/login", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })

@@ -64,7 +64,7 @@ function removeTypingIndicator() {
 
 // Calls YOUR proxy server — which talks to Ollama locally
 async function fetchOllamaReply() {
-    const response = await fetch("http://localhost:3000/api/chat",{
+    const response = await fetch("http://10.230.22.186:3000/api/chat",{
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: conversationHistory })

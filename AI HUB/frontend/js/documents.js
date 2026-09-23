@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000/api";
+const API_BASE = "http://10.230.22.186:3000/api";
 
 let documents = [];
 let selectedDocId = null;
