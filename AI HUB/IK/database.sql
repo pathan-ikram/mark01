@@ -1,4 +1,4 @@
-CREATE TABLE code_history (
+﻿CREATE TABLE code_history (
     id INT  PRIMARY KEY,
     user_id INT,
     language VARCHAR(50),

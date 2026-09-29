@@ -1,4 +1,4 @@
-CREATE TABLE document_history (
+﻿CREATE TABLE document_history (
     id INT PRIMARY KEY,
 
     user_id INT NOT NULL,

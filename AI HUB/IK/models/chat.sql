@@ -1,4 +1,4 @@
-CREATE TABLE chat_history (
+﻿CREATE TABLE chat_history (
     id INT PRIMARY KEY,
     user_id INT NOT NULL,
     title VARCHAR(200),

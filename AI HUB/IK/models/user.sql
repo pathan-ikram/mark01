@@ -1,4 +1,4 @@
-CREATE TABLE users (
+﻿CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fullname VARCHAR(100),
     username VARCHAR(50) UNIQUE,

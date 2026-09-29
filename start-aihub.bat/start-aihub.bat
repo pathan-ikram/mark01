@@ -1,4 +1,4 @@
-@echo off
+﻿@echo off
 title AI Hub Launcher
 color 0A
 

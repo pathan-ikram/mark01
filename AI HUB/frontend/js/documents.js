@@ -359,3 +359,4 @@ function clearAll() {
     showToast("Bulk delete not implemented yet â€” delete documents individually for now", "info");
 }
 
+

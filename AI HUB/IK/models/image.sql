@@ -1,4 +1,4 @@
-CREATE TABLE image_history (
+﻿CREATE TABLE image_history (
     id INT PRIMARY KEY,
     user_id INT NOT NULL,
     prompt LONGTEXT NOT NULL,
