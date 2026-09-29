@@ -1,4 +1,4 @@
-const db = require("../config/database");
+﻿const db = require("../config/database");
 
 // GET all customers
 exports.getCustomers = async (req, res) => {
@@ -79,3 +79,5 @@ exports.addCustomer = async (req, res) => {
     }
 
 };
+
+

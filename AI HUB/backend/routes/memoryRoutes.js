@@ -1,4 +1,4 @@
-const express = require("express");
+﻿const express = require("express");
 const router = express.Router();
 
 const memoryController = require("../controllers/memoryController");
@@ -10,3 +10,4 @@ router.get("/document/:id", memoryController.getDocumentMemory);
 router.get("/document-search", memoryController.searchDocumentMemory);
 
 module.exports = router;
+

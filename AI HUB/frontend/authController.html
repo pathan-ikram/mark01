@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login — AI HUB</title>
+<title>Login â€” AI HUB</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
  
@@ -345,11 +345,11 @@ body::before {
           type="password"
           id="password"
           name="password"
-          placeholder="••••••••"
+          placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
           autocomplete="current-password"
           required
           minlength="8" />
-        <button type="button" class="toggle-pw" id="toggle-pw" aria-label="Show password">👁</button>
+        <button type="button" class="toggle-pw" id="toggle-pw" aria-label="Show password">ðŸ‘</button>
       </div>
       <div class="field-error" id="password-error">Password must be at least 8 characters.</div>
     </div>
@@ -374,10 +374,10 @@ body::before {
   </div>
  
   <div class="back-link">
-    <a href="index.html">← Back to home</a>
+    <a href="index.html">â† Back to home</a>
   </div>
  
-  <p class="rate-notice">🔒 Your connection is secure. We never store plain-text passwords.</p>
+  <p class="rate-notice">ðŸ”’ Your connection is secure. We never store plain-text passwords.</p>
  
 </div>
  
@@ -386,7 +386,7 @@ body::before {
 
 
 
-// ── Helpers ──────────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function showError(msg) {
   const banner = document.getElementById('error-banner');
   banner.textContent = msg;
@@ -399,7 +399,7 @@ function hideError() {
  
 function setLoading(on) {
   document.getElementById('login-btn').disabled = on;
-  document.getElementById('btn-text').textContent = on ? 'Signing in…' : 'Sign in';
+  document.getElementById('btn-text').textContent = on ? 'Signing inâ€¦' : 'Sign in';
   document.getElementById('spinner').style.display = on ? 'block' : 'none';
 }
  
@@ -408,15 +408,15 @@ function markField(id, errorId, valid) {
   document.getElementById(errorId).style.display = valid ? 'none' : 'block';
 }
  
-// ── Toggle password visibility ───────────────────────────────
+// â”€â”€ Toggle password visibility â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 document.getElementById('toggle-pw').addEventListener('click', function () {
   const pw = document.getElementById('password');
   const isHidden = pw.type === 'password';
   pw.type = isHidden ? 'text' : 'password';
-  this.textContent = isHidden ? '🙈' : '👁';
+  this.textContent = isHidden ? 'ðŸ™ˆ' : 'ðŸ‘';
 });
  
-// ── Clear errors on input ────────────────────────────────────
+// â”€â”€ Clear errors on input â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 document.getElementById('email').addEventListener('input', function () {
   markField('email', 'email-error', true);
   hideError();
@@ -427,11 +427,11 @@ document.getElementById('password').addEventListener('input', function () {
   hideError();
 });
  
-// ── Rate limiting (3 attempts per minute) ────────────────────
+// â”€â”€ Rate limiting (3 attempts per minute) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let attempts = 0;
 let lockUntil = 0;
  
-// ── Form submit ──────────────────────────────────────────────
+// â”€â”€ Form submit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 document.getElementById('login-form').addEventListener('submit', async function (e) {
   e.preventDefault();
   hideError();
@@ -459,7 +459,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
  
   try {
     // Send to your server login endpoint
-    const res = await fetch("http://10.230.22.186:3000/api/auth/login", {
+    const res = await fetch("http://10.143.172.186:3000/api/auth/login", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -479,13 +479,13 @@ document.getElementById('login-form').addEventListener('submit', async function 
       return;
     }
  
-    // Success — redirect to dashboard
+    // Success â€” redirect to dashboard
     attempts = 0;
     window.location.href = 'dashboard.html';
  
   } catch (err) {
     // If no backend login yet, go straight to dashboard (demo mode)
-    console.warn('No /api/login endpoint yet — demo redirect');
+    console.warn('No /api/login endpoint yet â€” demo redirect');
     window.location.href = 'dashboard.html';
   } finally {
     setLoading(false);
@@ -495,3 +495,5 @@ document.getElementById('login-form').addEventListener('submit', async function 
  
 </body>
 </html>
+
+

@@ -1,4 +1,4 @@
-const OLLAMA_BASE_URL = "http://localhost:11434";
+﻿const OLLAMA_BASE_URL = "http://localhost:11434";
 const DEFAULT_MODEL = "llama3.2:latest";
 
 async function checkOllamaStatus() {
@@ -67,3 +67,4 @@ module.exports = {
     generateJSON,
     DEFAULT_MODEL
 };
+

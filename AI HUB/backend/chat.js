@@ -1,4 +1,4 @@
-const conversationHistory = [];
+﻿const conversationHistory = [];
 
 function getCurrentTime() {
     const now = new Date();
@@ -62,7 +62,7 @@ function removeTypingIndicator() {
     if (indicator) indicator.remove();
 }
 
-// Calls YOUR proxy server — which talks to Ollama locally
+// Calls YOUR proxy server â€” which talks to Ollama locally
 async function fetchOllamaReply() {
     const response = await fetch("http://localhost:3000/api/chat",{
         method: "POST",
@@ -107,7 +107,7 @@ async function sendMessage() {
     } catch (error) {
         console.error("AI HUB chat error:", error);
         removeTypingIndicator();
-        appendBotMessage("⚠️ " + error.message);
+        appendBotMessage("âš ï¸ " + error.message);
     } finally {
         setInputState(false);
         input.focus();
@@ -120,3 +120,5 @@ document.getElementById("message").addEventListener("keydown", function (e) {
         sendMessage();
     }
 });
+
+

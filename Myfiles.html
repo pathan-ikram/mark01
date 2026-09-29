@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Files — AI HUB</title>
+<title>My Files â€” AI HUB</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
 
@@ -39,7 +39,7 @@ body {
   min-height: 100vh;
 }
 
-/* ── Nav ─────────────────────────────────────────────────── */
+/* â”€â”€ Nav â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 nav {
   position: sticky; top: 0; z-index: 100;
   display: flex; justify-content: space-between; align-items: center;
@@ -53,14 +53,14 @@ nav {
 .nav-links a { font-size: 14px; color: var(--text-3); text-decoration: none; transition: color .2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
 
-/* ── Layout ──────────────────────────────────────────────── */
+/* â”€â”€ Layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .content { max-width: 1200px; margin: 0 auto; padding: 32px; }
 
 .page-header { margin-bottom: 24px; }
 .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; }
 .page-header p { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 
-/* ── Upload zone ─────────────────────────────────────────── */
+/* â”€â”€ Upload zone â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .upload-zone {
   border: 2px dashed var(--border-strong);
   border-radius: var(--radius-lg);
@@ -76,7 +76,7 @@ nav {
 .upload-zone h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
 .upload-zone p { font-size: 12px; color: var(--text-muted); }
 
-/* ── Context menu (right-click) ─────────────────────────── */
+/* â”€â”€ Context menu (right-click) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .context-menu {
   position: fixed; display: none; z-index: 1000;
   background: var(--surface); border: 1px solid var(--border);
@@ -101,7 +101,7 @@ nav {
 }
 .ctx-item:hover > .ctx-submenu { display: block; }
 
-/* ── Menu bar ────────────────────────────────────────────── */
+/* â”€â”€ Menu bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .menu-bar {
   display: flex; align-items: center; gap: 4px;
   background: var(--surface); border: 1px solid var(--border);
@@ -133,10 +133,10 @@ nav {
   cursor: pointer; color: var(--text-2);
 }
 .menu-dropdown-item:hover { background: var(--accent-bg); color: var(--accent-text); }
-.menu-dropdown-item.active-check::before { content: '✓'; width: 14px; }
+.menu-dropdown-item.active-check::before { content: 'âœ“'; width: 14px; }
 .menu-divider { width: 1px; height: 22px; background: var(--border); margin: 0 4px; }
 
-/* ── Fm toolbar ──────────────────────────────────────────── */
+/* â”€â”€ Fm toolbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .fm-toolbar {
   display: flex; align-items: center; justify-content: space-between;
   gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
@@ -164,7 +164,7 @@ nav {
 .btn-danger { background: var(--danger); color: #fff; border-color: var(--danger); }
 .btn-sm { padding: 5px 10px; font-size: 11px; }
 
-/* ── File grid ───────────────────────────────────────────── */
+/* â”€â”€ File grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .file-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -219,7 +219,7 @@ nav {
 .empty-state { grid-column: 1/-1; text-align: center; padding: 48px 20px; color: var(--text-muted); }
 .empty-state .icon { font-size: 40px; margin-bottom: 10px; opacity: .5; }
 
-/* ── Preview modal ───────────────────────────────────────── */
+/* â”€â”€ Preview modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 800; display: none; }
 .modal-overlay.open { display: block; }
 .modal {
@@ -235,7 +235,7 @@ nav {
 .modal-body img { max-width: 100%; border-radius: var(--radius); }
 .modal-actions { display: flex; gap: 8px; margin-top: 16px; }
 
-/* ── Toast ───────────────────────────────────────────────── */
+/* â”€â”€ Toast â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .toast {
   position: fixed; bottom: 20px; right: 20px; background: var(--surface);
   border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 16px;
@@ -255,7 +255,7 @@ nav {
 <body>
 
 <nav>
-  <span class="nav-title">📁 My Files</span>
+  <span class="nav-title">ðŸ“ My Files</span>
   <ul class="nav-links">
     <li><a href="index.html">Dashboard</a></li>
     <li><a href="myfiles.html" class="active">My Files</a></li>
@@ -272,26 +272,26 @@ nav {
   <!-- Menu bar: View / New / Refresh / Rename -->
   <div class="menu-bar">
     <div class="menu-item">
-      <button class="menu-btn" onclick="toggleMenu('view-menu')">👁 View ▾</button>
+      <button class="menu-btn" onclick="toggleMenu('view-menu')">ðŸ‘ View â–¾</button>
       <div class="menu-dropdown" id="view-menu">
-        <div class="menu-dropdown-item" id="view-grid-option" onclick="setView('grid')">▦ Grid view</div>
-        <div class="menu-dropdown-item" id="view-list-option" onclick="setView('list')">☰ List view</div>
+        <div class="menu-dropdown-item" id="view-grid-option" onclick="setView('grid')">â–¦ Grid view</div>
+        <div class="menu-dropdown-item" id="view-list-option" onclick="setView('list')">â˜° List view</div>
       </div>
     </div>
 
     <div class="menu-item">
-      <button class="menu-btn" onclick="toggleMenu('new-menu')">➕ New ▾</button>
+      <button class="menu-btn" onclick="toggleMenu('new-menu')">âž• New â–¾</button>
       <div class="menu-dropdown" id="new-menu">
-        <div class="menu-dropdown-item" onclick="closeAllMenus();promptNewFolder()">📁 New Folder</div>
-        <div class="menu-dropdown-item" onclick="closeAllMenus();document.getElementById('file-input').click()">⬆️ Upload File</div>
+        <div class="menu-dropdown-item" onclick="closeAllMenus();promptNewFolder()">ðŸ“ New Folder</div>
+        <div class="menu-dropdown-item" onclick="closeAllMenus();document.getElementById('file-input').click()">â¬†ï¸ Upload File</div>
       </div>
     </div>
 
     <div class="menu-divider"></div>
 
-    <button class="menu-btn" onclick="refreshFileManager()">🔄 Refresh</button>
+    <button class="menu-btn" onclick="refreshFileManager()">ðŸ”„ Refresh</button>
 
-    <button class="menu-btn" id="rename-btn" onclick="renameSelected()" disabled>✏️ Rename</button>
+    <button class="menu-btn" id="rename-btn" onclick="renameSelected()" disabled>âœï¸ Rename</button>
   </div>
 
   <div class="upload-zone" id="upload-zone"
@@ -299,7 +299,7 @@ nav {
     ondragover="event.preventDefault(); this.classList.add('drag-over')"
     ondragleave="this.classList.remove('drag-over')"
     ondrop="handleDrop(event)">
-    <div class="icon">📤</div>
+    <div class="icon">ðŸ“¤</div>
     <h3>Drop files here or click to upload</h3>
     <p>Files are saved to your current folder</p>
     <input type="file" id="file-input" style="display:none" multiple onchange="handleFileSelect(event)" />
@@ -308,19 +308,19 @@ nav {
   <!-- STAGE 2: File manager -->
   <div class="fm-toolbar">
     <div class="fm-breadcrumb" id="breadcrumb">
-      <span class="crumb-current">🏠 Home</span>
+      <span class="crumb-current">ðŸ  Home</span>
     </div>
     <div class="fm-search">
-      <span>🔍</span>
-      <input type="text" id="search-input" placeholder="Search files…" oninput="onSearchInput(this.value)" />
+      <span>ðŸ”</span>
+      <input type="text" id="search-input" placeholder="Search filesâ€¦" oninput="onSearchInput(this.value)" />
     </div>
-    <button class="btn" onclick="promptNewFolder()">📁 New Folder</button>
+    <button class="btn" onclick="promptNewFolder()">ðŸ“ New Folder</button>
   </div>
 
   <div class="file-grid" id="file-grid" oncontextmenu="showContextMenu(event)">
     <div class="empty-state">
-      <div class="icon">📂</div>
-      <p>Loading…</p>
+      <div class="icon">ðŸ“‚</div>
+      <p>Loadingâ€¦</p>
     </div>
   </div>
 
@@ -329,22 +329,22 @@ nav {
 <!-- Right-click context menu -->
 <div class="context-menu" id="context-menu">
   <div class="ctx-item">
-    <span>👁 View</span> <span class="arrow">▶</span>
+    <span>ðŸ‘ View</span> <span class="arrow">â–¶</span>
     <div class="ctx-submenu">
-      <div class="ctx-item" onclick="setView('grid');closeContextMenu()">▦ Grid view</div>
-      <div class="ctx-item" onclick="setView('list');closeContextMenu()">☰ List view</div>
+      <div class="ctx-item" onclick="setView('grid');closeContextMenu()">â–¦ Grid view</div>
+      <div class="ctx-item" onclick="setView('list');closeContextMenu()">â˜° List view</div>
     </div>
   </div>
   <div class="ctx-item">
-    <span>➕ New</span> <span class="arrow">▶</span>
+    <span>âž• New</span> <span class="arrow">â–¶</span>
     <div class="ctx-submenu">
-      <div class="ctx-item" onclick="closeContextMenu();promptNewFolder()">📁 New Folder</div>
-      <div class="ctx-item" onclick="closeContextMenu();document.getElementById('file-input').click()">⬆️ Upload File</div>
+      <div class="ctx-item" onclick="closeContextMenu();promptNewFolder()">ðŸ“ New Folder</div>
+      <div class="ctx-item" onclick="closeContextMenu();document.getElementById('file-input').click()">â¬†ï¸ Upload File</div>
     </div>
   </div>
   <div class="ctx-divider"></div>
-  <div class="ctx-item" onclick="closeContextMenu();refreshFileManager()">🔄 Refresh</div>
-  <div class="ctx-item" id="ctx-rename" onclick="closeContextMenu();renameSelected()">✏️ Rename</div>
+  <div class="ctx-item" onclick="closeContextMenu();refreshFileManager()">ðŸ”„ Refresh</div>
+  <div class="ctx-item" id="ctx-rename" onclick="closeContextMenu();renameSelected()">âœï¸ Rename</div>
 </div>
 
 <!-- Preview modal -->
@@ -352,7 +352,7 @@ nav {
 <div class="modal" id="preview-modal">
   <div class="modal-head">
     <span class="modal-title" id="preview-title">File</span>
-    <button class="modal-close" onclick="closePreview()">✕</button>
+    <button class="modal-close" onclick="closePreview()">âœ•</button>
   </div>
   <div class="modal-body" id="preview-body"></div>
 </div>
@@ -364,12 +364,12 @@ nav {
 const API_BASE = "http://localhost:3000/api/files";
 
 let currentFolderId = null;
-let folderPath = [{ id: null, name: "🏠 Home" }];
+let folderPath = [{ id: null, name: "ðŸ  Home" }];
 let currentFileId = null;
 let selectedItem = null; // { type: 'file'|'folder', id, name }
 let viewMode = localStorage.getItem('myfiles_view') || 'grid';
 
-// ── Toast ────────────────────────────────────────────────────
+// â”€â”€ Toast â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function toast(msg, type = "success") {
   const el = document.getElementById("toast");
   el.textContent = msg;
@@ -377,7 +377,7 @@ function toast(msg, type = "success") {
   setTimeout(() => el.classList.remove("show"), 2500);
 }
 
-// ── STAGE 1: Upload ──────────────────────────────────────────
+// â”€â”€ STAGE 1: Upload â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function handleFileSelect(e) {
   uploadFiles(e.target.files);
   e.target.value = "";
@@ -410,7 +410,7 @@ async function uploadFiles(fileList) {
   loadFileManager();
 }
 
-// ── STAGE 2: Load files + folders ───────────────────────────
+// â”€â”€ STAGE 2: Load files + folders â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function loadFileManager() {
   try {
     const [filesRes, foldersRes] = await Promise.all([
@@ -422,7 +422,7 @@ async function loadFileManager() {
 
     renderGrid(foldersData.folders || [], filesData.files || []);
   } catch (err) {
-    toast("Could not load files — is the backend running?", "error");
+    toast("Could not load files â€” is the backend running?", "error");
   }
 }
 
@@ -433,7 +433,7 @@ function renderGrid(folders, files) {
   if (folders.length === 0 && files.length === 0) {
     grid.innerHTML = `
       <div class="empty-state">
-        <div class="icon">📂</div>
+        <div class="icon">ðŸ“‚</div>
         <p>This folder is empty. Upload a file or create a folder to get started.</p>
       </div>`;
     setSelected(null);
@@ -447,10 +447,10 @@ function renderGrid(folders, files) {
       <div class="folder-item" data-type="folder" data-id="${f.id}" data-name="${escapeAttr(f.name)}"
            onclick="handleItemClick(event, 'folder', ${f.id}, '${escapeAttr(f.name)}')"
            ondblclick="openFolder(${f.id}, '${escapeAttr(f.name)}')">
-        <div class="folder-icon">📁</div>
+        <div class="folder-icon">ðŸ“</div>
         <div class="file-name">${escapeHtml(f.name)}</div>
         <div class="file-actions">
-          <button class="file-action-btn del" onclick="event.stopPropagation();deleteFolder(${f.id})">✕</button>
+          <button class="file-action-btn del" onclick="event.stopPropagation();deleteFolder(${f.id})">âœ•</button>
         </div>
       </div>`;
   });
@@ -468,8 +468,8 @@ function renderGrid(folders, files) {
         <div class="file-name">${escapeHtml(file.original_name)}</div>
         <div class="file-meta">${sizeKB} KB</div>
         <div class="file-actions">
-          <button class="file-action-btn" onclick="event.stopPropagation();downloadFile(${file.id})">⬇</button>
-          <button class="file-action-btn del" onclick="event.stopPropagation();deleteFile(${file.id})">✕</button>
+          <button class="file-action-btn" onclick="event.stopPropagation();downloadFile(${file.id})">â¬‡</button>
+          <button class="file-action-btn del" onclick="event.stopPropagation();deleteFile(${file.id})">âœ•</button>
         </div>
       </div>`;
   });
@@ -478,7 +478,7 @@ function renderGrid(folders, files) {
   setSelected(null);
 }
 
-// ── Selection (single-click select, double-click open) ───────
+// â”€â”€ Selection (single-click select, double-click open) â”€â”€â”€â”€â”€â”€â”€
 function handleItemClick(event, type, id, name) {
   event.stopPropagation();
   setSelected({ type, id, name }, event.currentTarget);
@@ -500,14 +500,14 @@ function setSelected(item, el) {
 }
 
 function fileIcon(ext) {
-  if (ext === "pdf") return "📕";
-  if (["jpg","jpeg","png","gif","webp"].includes(ext)) return "🖼️";
-  if (["doc","docx"].includes(ext)) return "📘";
-  if (ext === "csv" || ext === "xlsx") return "📊";
-  return "📄";
+  if (ext === "pdf") return "ðŸ“•";
+  if (["jpg","jpeg","png","gif","webp"].includes(ext)) return "ðŸ–¼ï¸";
+  if (["doc","docx"].includes(ext)) return "ðŸ“˜";
+  if (ext === "csv" || ext === "xlsx") return "ðŸ“Š";
+  return "ðŸ“„";
 }
 
-// ── Folders ──────────────────────────────────────────────────
+// â”€â”€ Folders â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function openFolder(id, name) {
   currentFolderId = id;
   folderPath.push({ id, name });
@@ -528,7 +528,7 @@ function renderBreadcrumb() {
     const isLast = i === folderPath.length - 1;
     return isLast
       ? `<span class="crumb-current">${escapeHtml(f.name)}</span>`
-      : `<span class="crumb" onclick="goToBreadcrumb(${i})">${escapeHtml(f.name)}</span><span>›</span>`;
+      : `<span class="crumb" onclick="goToBreadcrumb(${i})">${escapeHtml(f.name)}</span><span>â€º</span>`;
   }).join(" ");
 }
 
@@ -567,10 +567,10 @@ async function deleteFolder(id) {
   }
 }
 
-// ── Preview / Download / Delete ─────────────────────────────
+// â”€â”€ Preview / Download / Delete â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function previewFile(id) {
   currentFileId = id;
-  document.getElementById("preview-title").textContent = "Loading…";
+  document.getElementById("preview-title").textContent = "Loadingâ€¦";
   document.getElementById("preview-body").innerHTML = "";
   document.getElementById("modal-overlay").classList.add("open");
   document.getElementById("preview-modal").classList.add("open");
@@ -596,8 +596,8 @@ async function previewFile(id) {
 
     bodyHtml += `
       <div class="modal-actions">
-        <button class="btn btn-primary" onclick="downloadFile(${file.id})">⬇ Download</button>
-        <button class="btn btn-danger" onclick="deleteFile(${file.id})">🗑 Delete</button>
+        <button class="btn btn-primary" onclick="downloadFile(${file.id})">â¬‡ Download</button>
+        <button class="btn btn-danger" onclick="deleteFile(${file.id})">ðŸ—‘ Delete</button>
       </div>`;
 
     document.getElementById("preview-body").innerHTML = bodyHtml;
@@ -629,7 +629,7 @@ async function deleteFile(id) {
   }
 }
 
-// ── Search ───────────────────────────────────────────────────
+// â”€â”€ Search â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let searchDebounce;
 function onSearchInput(value) {
   clearTimeout(searchDebounce);
@@ -648,7 +648,7 @@ async function runSearch(query) {
   }
 }
 
-// ── Utilities ────────────────────────────────────────────────
+// â”€â”€ Utilities â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function escapeHtml(str) {
   const div = document.createElement("div");
   div.textContent = str;
@@ -658,7 +658,7 @@ function escapeAttr(str) {
   return String(str).replace(/'/g, "&#39;").replace(/"/g, "&quot;");
 }
 
-// ── Context menu (right-click) ────────────────────────────────
+// â”€â”€ Context menu (right-click) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function showContextMenu(event) {
   event.preventDefault();
 
@@ -699,7 +699,7 @@ document.addEventListener('click', () => closeContextMenu());
 document.addEventListener('scroll', () => closeContextMenu(), true);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeContextMenu(); });
 
-// ── Menu bar: dropdowns ──────────────────────────────────────
+// â”€â”€ Menu bar: dropdowns â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function toggleMenu(id) {
   const menu = document.getElementById(id);
   const isOpen = menu.classList.contains('open');
@@ -715,7 +715,7 @@ document.addEventListener('click', (e) => {
   if (!e.target.closest('.menu-item')) closeAllMenus();
 });
 
-// ── Menu bar: View ───────────────────────────────────────────
+// â”€â”€ Menu bar: View â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function setView(mode) {
   viewMode = mode;
   localStorage.setItem('myfiles_view', mode);
@@ -723,14 +723,14 @@ function setView(mode) {
   closeAllMenus();
 }
 
-// ── Menu bar: Refresh ────────────────────────────────────────
+// â”€â”€ Menu bar: Refresh â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function refreshFileManager() {
   setSelected(null);
   loadFileManager();
   toast('Refreshed', 'success');
 }
 
-// ── Menu bar: Rename ─────────────────────────────────────────
+// â”€â”€ Menu bar: Rename â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function renameSelected() {
   if (!selectedItem) return;
 
@@ -758,12 +758,16 @@ async function renameSelected() {
     setSelected(null);
     loadFileManager();
   } catch (err) {
-    toast('Could not rename — is the backend running?', 'error');
+    toast('Could not rename â€” is the backend running?', 'error');
   }
 }
 
 document.addEventListener("DOMContentLoaded", loadFileManager);
 </script>
 
+    <script src="js/api.js"></script>
 </body>
 </html>
+
+
+

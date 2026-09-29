@@ -1,8 +1,8 @@
-// ============================================================
-//  AI HUB — server.js
-//  Ollama  → /api/chat        (AI Chat, Voice, Code)
-//  Ollama  → /api/documents/upload  (Document text extraction + AI analysis)
-//  ComfyUI → /api/generate-image  (AI Image generation)
+﻿// ============================================================
+//  AI HUB â€” server.js
+//  Ollama  â†’ /api/chat        (AI Chat, Voice, Code)
+//  Ollama  â†’ /api/documents/upload  (Document text extraction + AI analysis)
+//  ComfyUI â†’ /api/generate-image  (AI Image generation)
 // ============================================================
 require("dotenv").config();
 const express = require("express");
@@ -25,7 +25,7 @@ const smartsevaDocumentRoutes = require("./routes/smartsevaDocumentRoutes.JS");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ── Middleware ────────────────────────────────────────────────
+// â”€â”€ Middleware â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 app.use(cors({ origin: "*" }));
 app.use(express.json({ limit: "2gb" }));
 app.use(express.urlencoded({ extended: true, limit: "2gb" }));
@@ -48,16 +48,16 @@ app.use("/api/files", fileRoutes);
 
 
 
-// ── Config ────────────────────────────────────────────────────
+// â”€â”€ Config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const OLLAMA_URL   = "http://127.0.0.1:11434";
 const OLLAMA_MODEL = "llama3.2:latest";
 const COMFY_URL    = "http://127.0.0.1:8188";
 const WORKFLOW_FILE = path.join(__dirname, "workflows", "stable-cascade-api.json");
 
-// ════════════════════════════════════════════════════════════
-//  OLLAMA — Chat endpoint (used by chat.js, voice.js, code.js)
-//  NOTE: Documents go through /api/documents/upload — NOT here.
-// ════════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+//  OLLAMA â€” Chat endpoint (used by chat.js, voice.js, code.js)
+//  NOTE: Documents go through /api/documents/upload â€” NOT here.
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 app.post("/api/chat", async (req, res) => {
     const { messages } = req.body;
 
@@ -66,7 +66,7 @@ app.post("/api/chat", async (req, res) => {
     }
 
     try {
-        console.log(`📤 Ollama ← ${messages[messages.length - 1]?.content?.slice(0, 60)}…`);
+        console.log(`ðŸ“¤ Ollama â† ${messages[messages.length - 1]?.content?.slice(0, 60)}â€¦`);
 
         const response = await fetch(`${OLLAMA_URL}/api/chat`, {
             method:  "POST",
@@ -89,25 +89,25 @@ app.post("/api/chat", async (req, res) => {
         const reply = data?.message?.content;
 
         if (!reply) {
-            console.error("❌ No content in Ollama response:", data);
+            console.error("âŒ No content in Ollama response:", data);
             return res.status(502).json({ error: "No reply from Ollama" });
         }
 
-        console.log(`✅ Ollama → ${reply.slice(0, 60)}…`);
+        console.log(`âœ… Ollama â†’ ${reply.slice(0, 60)}â€¦`);
         res.json({ reply });
 
     } catch (err) {
         if (err.message?.includes("ECONNREFUSED")) {
             return res.status(503).json({ error: "Ollama is not running. Start it with: ollama serve" });
         }
-        console.error("❌ Ollama error:", err.message);
+        console.error("âŒ Ollama error:", err.message);
         res.status(500).json({ error: "Server error: " + err.message });
     }
 });
 
-// ════════════════════════════════════════════════════════════
-//  COMFYUI — Queue image generation
-// ════════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+//  COMFYUI â€” Queue image generation
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 app.post("/api/generate-image", async (req, res) => {
     const { prompt, negativePrompt = "" } = req.body;
 
@@ -123,7 +123,7 @@ app.post("/api/generate-image", async (req, res) => {
     }
 
     try {
-        console.log(`🎨 ComfyUI ← "${prompt.slice(0, 60)}…"`);
+        console.log(`ðŸŽ¨ ComfyUI â† "${prompt.slice(0, 60)}â€¦"`);
 
         const workflow = JSON.parse(fs.readFileSync(WORKFLOW_FILE, "utf8"));
 
@@ -138,7 +138,7 @@ app.post("/api/generate-image", async (req, res) => {
         });
 
         const promptId = queueRes.data.prompt_id;
-        console.log(`✅ ComfyUI queued — prompt_id: ${promptId}`);
+        console.log(`âœ… ComfyUI queued â€” prompt_id: ${promptId}`);
 
         res.json({
             success:   true,
@@ -154,7 +154,7 @@ app.post("/api/generate-image", async (req, res) => {
                 hint:  "Start ComfyUI and make sure it runs at http://127.0.0.1:8188"
             });
         }
-        console.error("❌ ComfyUI error:", err.response?.data || err.message);
+        console.error("âŒ ComfyUI error:", err.response?.data || err.message);
         res.status(500).json({
             error:   "ComfyUI image generation failed",
             details: err.response?.data || err.message
@@ -162,9 +162,9 @@ app.post("/api/generate-image", async (req, res) => {
     }
 });
 
-// ════════════════════════════════════════════════════════════
-//  COMFYUI — Poll image status
-// ════════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+//  COMFYUI â€” Poll image status
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 app.get("/api/image-status/:promptId", async (req, res) => {
     const { promptId } = req.params;
 
@@ -173,7 +173,7 @@ app.get("/api/image-status/:promptId", async (req, res) => {
         const history = histRes.data[promptId];
 
         if (!history) {
-            return res.json({ status: "pending", message: "Still generating…" });
+            return res.json({ status: "pending", message: "Still generatingâ€¦" });
         }
 
         if (history.status?.completed) {
@@ -192,21 +192,21 @@ app.get("/api/image-status/:promptId", async (req, res) => {
                 }
             }
 
-            console.log(`✅ ComfyUI image ready — ${images.length} image(s)`);
+            console.log(`âœ… ComfyUI image ready â€” ${images.length} image(s)`);
             return res.json({ status: "complete", images });
         }
 
-        res.json({ status: "processing", message: "ComfyUI is generating…" });
+        res.json({ status: "processing", message: "ComfyUI is generatingâ€¦" });
 
     } catch (err) {
-        console.error("❌ Status check error:", err.message);
+        console.error("âŒ Status check error:", err.message);
         res.status(500).json({ error: "Could not check image status" });
     }
 });
 
-// ════════════════════════════════════════════════════════════
-//  COMFYUI — Serve generated image file
-// ════════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+//  COMFYUI â€” Serve generated image file
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 app.get("/api/image-file", async (req, res) => {
     const { filename, subfolder = "", type = "output" } = req.query;
 
@@ -220,14 +220,14 @@ app.get("/api/image-file", async (req, res) => {
         res.send(imgRes.data);
 
     } catch (err) {
-        console.error("❌ Image fetch error:", err.message);
+        console.error("âŒ Image fetch error:", err.message);
         res.status(500).json({ error: "Could not fetch image from ComfyUI" });
     }
 });
 
-// ════════════════════════════════════════════════════════════
-//  COMFYUI — Get queue status
-// ════════════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+//  COMFYUI â€” Get queue status
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 app.get("/api/queue-status", async (req, res) => {
     try {
         const queueRes = await axios.get(`${COMFY_URL}/queue`);
@@ -239,7 +239,7 @@ app.get("/api/queue-status", async (req, res) => {
     }
 });
 
-// ── Health check ──────────────────────────────────────────────
+// â”€â”€ Health check â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 app.get("/api/health", async (req, res) => {
     const health = { server: "ok", ollama: "unknown", comfyui: "unknown" };
 
@@ -260,23 +260,27 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
 
-// ── Start ──────────────────────────────────────────────────────
+// â”€â”€ Start â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function startServer() {
     try {
         await db.query("SELECT 1");
-        console.log("✅ MariaDB Connected");
+        console.log("âœ… MariaDB Connected");
 
         app.listen(PORT, "0.0.0.0", () => {
-    console.log(`\n✅ AI HUB running at http://10.230.22.186:${PORT}`);
-    console.log(`   Ollama  → ${OLLAMA_URL}`);
-    console.log(`   ComfyUI → ${COMFY_URL}`);
-    console.log(`   Health  → http://10.230.22.186:${PORT}/api/health`);
+    console.log(`\nâœ… AI HUB running at http://10.143.172.186:${PORT}`);
+    console.log(`   Ollama  â†’ ${OLLAMA_URL}`);
+    console.log(`   ComfyUI â†’ ${COMFY_URL}`);
+    console.log(`   Health  â†’ http://10.143.172.186:${PORT}/api/health`);
 });
 
     } catch (err) {
-        console.error("❌ Database Connection Failed");
+        console.error("âŒ Database Connection Failed");
         console.error(err);
     }
 }
 
 startServer();
+
+
+
+

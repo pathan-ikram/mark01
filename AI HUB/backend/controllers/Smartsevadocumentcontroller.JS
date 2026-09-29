@@ -1,4 +1,4 @@
-const smartsevaDocumentModel = require("../models/smartsevaDocumentModel");
+﻿const smartsevaDocumentModel = require("../models/smartsevaDocumentModel");
 
 exports.createDocument = async (req, res) => {
     try {
@@ -66,3 +66,5 @@ exports.deleteDocument = async (req, res) => {
         res.status(500).json({ success: false, message: err.message });
     }
 };
+
+

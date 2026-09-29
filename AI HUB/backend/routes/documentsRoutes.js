@@ -1,4 +1,4 @@
-const express = require("express");
+﻿const express = require("express");
 const router = express.Router();
 const upload = require("../middleware/upload");
 const documentController = require("../controllers/documentsController");
@@ -30,3 +30,4 @@ router.get("/history", documentController.getHistory);
 router.get("/:id", documentController.getDocumentDetail);
 
 module.exports = router;
+

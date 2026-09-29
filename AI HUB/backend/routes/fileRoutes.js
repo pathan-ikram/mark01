@@ -1,4 +1,4 @@
-const express = require("express");
+﻿const express = require("express");
 const router = express.Router();
 
 const upload = require("../middleware/upload");
@@ -18,3 +18,4 @@ router.patch("/:id/rename", fileController.renameFile);
 router.delete("/:id", fileController.deleteFile);
 
 module.exports = router;
+

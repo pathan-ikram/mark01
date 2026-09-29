@@ -1,6 +1,6 @@
-const API_BASE = "http://localhost:3000/api";
+﻿const API_BASE = "http://localhost:3000/api";
 
-// ── Helpers ──────────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function showError(msg) {
   const banner = document.getElementById('error-banner');
   document.getElementById('success-banner').style.display = 'none';
@@ -22,7 +22,7 @@ function hideBanners() {
 
 function setLoading(on) {
   document.getElementById('signup-btn').disabled = on;
-  document.getElementById('btn-text').textContent = on ? 'Creating account…' : 'Create account';
+  document.getElementById('btn-text').textContent = on ? 'Creating accountâ€¦' : 'Create account';
   document.getElementById('spinner').style.display = on ? 'block' : 'none';
 }
 
@@ -31,17 +31,17 @@ function markField(id, errorId, valid) {
   document.getElementById(errorId).style.display = valid ? 'none' : 'block';
 }
 
-// ── Toggle password visibility ───────────────────────────────
+// â”€â”€ Toggle password visibility â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 document.getElementById('toggle-pw').addEventListener('click', function () {
   const pw = document.getElementById('password');
   const confirmPw = document.getElementById('confirm-password');
   const isHidden = pw.type === 'password';
   pw.type = isHidden ? 'text' : 'password';
   confirmPw.type = isHidden ? 'text' : 'password';
-  this.textContent = isHidden ? '🙈' : '👁';
+  this.textContent = isHidden ? 'ðŸ™ˆ' : 'ðŸ‘';
 });
 
-// ── Clear errors on input ────────────────────────────────────
+// â”€â”€ Clear errors on input â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 ['fullname', 'username', 'email', 'password', 'confirm-password'].forEach((id) => {
   document.getElementById(id).addEventListener('input', function () {
     markField(id, id + '-error', true);
@@ -49,12 +49,12 @@ document.getElementById('toggle-pw').addEventListener('click', function () {
   });
 });
 
-// ── Redirect if already logged in ────────────────────────────
+// â”€â”€ Redirect if already logged in â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 if (localStorage.getItem('token')) {
   window.location.href = 'dashboard.html';
 }
 
-// ── Form submit ──────────────────────────────────────────────
+// â”€â”€ Form submit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 document.getElementById('signup-form').addEventListener('submit', async function (e) {
   e.preventDefault();
   hideBanners();
@@ -108,11 +108,11 @@ document.getElementById('signup-form').addEventListener('submit', async function
     if (data.token) {
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
-      showSuccess('Account created! Redirecting…');
+      showSuccess('Account created! Redirectingâ€¦');
       setTimeout(() => { window.location.href = 'dashboard.html'; }, 800);
     } else {
-      // No token returned — send to login instead
-      showSuccess('Account created! Redirecting to sign in…');
+      // No token returned â€” send to login instead
+      showSuccess('Account created! Redirecting to sign inâ€¦');
       setTimeout(() => { window.location.href = 'login.html'; }, 1200);
     }
 
@@ -123,3 +123,5 @@ document.getElementById('signup-form').addEventListener('submit', async function
     setLoading(false);
   }
 });
+
+

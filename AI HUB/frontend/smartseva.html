@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartSeva â€” Operator Dashboard</title>
+  <title>SmartSeva Ã¢â‚¬â€ Operator Dashboard</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -46,7 +46,7 @@
     <div class="tb-right">
       <div class="search-box">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="global-search" placeholder="Search customer or documentâ€¦" autocomplete="off">
+        <input type="text" id="global-search" placeholder="Search customer or documentÃ¢â‚¬Â¦" autocomplete="off">
         <div class="search-dropdown" id="search-dropdown"></div>
       </div>
       <div class="topbar-time" id="topbar-time"></div>
@@ -73,7 +73,7 @@
         <div class="card">
           <div class="card-head">
             <span class="card-head-title"><i class="fa-solid fa-triangle-exclamation"></i> Timer alerts</span>
-            <span class="badge" id="timer-alert-badge">checkingâ€¦</span>
+            <span class="badge" id="timer-alert-badge">checkingÃ¢â‚¬Â¦</span>
           </div>
           <div id="home-timers"></div>
         </div>
@@ -91,7 +91,7 @@
           <span class="section-title" id="cust-count-label">0 customers</span>
           <div class="search-inline">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="cust-search" placeholder="Filter by name or mobileâ€¦" oninput="filterCustomers(this.value)">
+            <input type="text" id="cust-search" placeholder="Filter by name or mobileÃ¢â‚¬Â¦" oninput="filterCustomers(this.value)">
           </div>
         </div>
         <div id="cust-list-wrap" class="card"></div>
@@ -113,7 +113,7 @@
             <div class="form-row"><label>Email</label><input type="email" id="c-email" placeholder="ramesh@email.com" oninput="markDraft()"></div>
             <div class="form-row"><label>Village / Taluka</label><input id="c-village" placeholder="Shirur, Pune" oninput="markDraft()"></div>
           </div>
-          <div class="form-row"><label>Full address</label><textarea id="c-address" rows="2" placeholder="House no., Village, Taluka, District, Maharashtra â€“ PIN" oninput="markDraft()"></textarea></div>
+          <div class="form-row"><label>Full address</label><textarea id="c-address" rows="2" placeholder="House no., Village, Taluka, District, Maharashtra Ã¢â‚¬â€œ PIN" oninput="markDraft()"></textarea></div>
           <div class="form-actions">
             <button class="btn btn-primary" onclick="saveCustomer()"><i class="fa-solid fa-user-plus"></i> Save customer</button>
             <button class="btn" onclick="clearCustForm()">Clear form</button>
@@ -131,7 +131,7 @@
           <div class="form-row">
             <label>Service type *</label>
             <select id="d-service" onchange="onServiceChange()">
-              <option value="">â€” select service â€”</option>
+              <option value="">Ã¢â‚¬â€ select service Ã¢â‚¬â€</option>
               <option>Income Certificate</option>
               <option>Caste Certificate</option>
               <option>Domicile Certificate</option>
@@ -157,7 +157,7 @@
         </div>
 
         <div class="autofill-banner" id="autofill-banner" style="display:none">
-          <i class="fa-solid fa-circle-check"></i> Customer found â€” details auto-filled from database
+          <i class="fa-solid fa-circle-check"></i> Customer found Ã¢â‚¬â€ details auto-filled from database
         </div>
 
         <div class="form-grid">
@@ -179,7 +179,7 @@
             <input type="date" id="d-submitted" oninput="onServiceChange(); markDraft()">
           </div>
           <div class="form-row">
-            <label>Service fee (â‚¹)</label>
+            <label>Service fee (Ã¢â€šÂ¹)</label>
             <input type="number" id="d-fee" placeholder="80" min="0" oninput="markDraft()">
           </div>
           <div class="form-row">
@@ -238,7 +238,7 @@
         <div class="card" id="income-list"></div>
         <div class="income-total-bar">
           <span>Total</span>
-          <span id="income-total">â‚¹0</span>
+          <span id="income-total">Ã¢â€šÂ¹0</span>
         </div>
       </div>
     </div>
@@ -259,13 +259,13 @@
           <div class="form-card-title">Generate receipt</div>
           <div class="form-row"><label>Select document</label>
             <select id="r-doc-select" onchange="onReceiptDocSelect()">
-              <option value="">â€” select a document â€”</option>
+              <option value="">Ã¢â‚¬â€ select a document Ã¢â‚¬â€</option>
             </select>
           </div>
           <div class="form-grid">
             <div class="form-row"><label>Customer name</label><input id="r-name" placeholder="Ramesh Salve"></div>
             <div class="form-row"><label>Service</label><input id="r-service" placeholder="Income Certificate"></div>
-            <div class="form-row"><label>Amount (â‚¹)</label><input type="number" id="r-amount" placeholder="80"></div>
+            <div class="form-row"><label>Amount (Ã¢â€šÂ¹)</label><input type="number" id="r-amount" placeholder="80"></div>
             <div class="form-row"><label>Date</label><input type="date" id="r-date"></div>
           </div>
           <div class="form-row"><label>Reference no.</label><input id="r-ref" placeholder="MH/2026/XXXXXX"></div>
@@ -326,3 +326,4 @@
 <script src="js/app.js"></script>
 </body>
 </html>
+

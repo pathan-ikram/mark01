@@ -1,4 +1,4 @@
-const db = require("../config/database");
+﻿const db = require("../config/database");
 
 async function saveMemory(sessionId, role, message) {
     const sql = `
@@ -64,3 +64,4 @@ module.exports = {
     searchDocumentMemory,
     buildContextFromMemory
 };
+

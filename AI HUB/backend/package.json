@@ -1,7 +1,7 @@
-{
+﻿{
   "name": "ai-hub-server",
   "version": "2.0.0",
-  "description": "AI HUB — Ollama + ComfyUI unified server",
+  "description": "AI HUB â€” Ollama + ComfyUI unified server",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -27,3 +27,4 @@
   "license": "ISC",
   "type": "commonjs"
 }
+

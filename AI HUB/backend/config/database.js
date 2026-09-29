@@ -1,4 +1,4 @@
-require("dotenv").config();
+﻿require("dotenv").config();
 const mysql = require("mysql2");
 
 const pool = mysql.createPool({
@@ -16,11 +16,13 @@ const promisePool = pool.promise();
 // Test connection immediately when this file loads
 promisePool.getConnection()
     .then((connection) => {
-        console.log(`✅ MySQL connected successfully (database: ${process.env.DB_NAME})`);
+        console.log(`âœ… MySQL connected successfully (database: ${process.env.DB_NAME})`);
         connection.release();
     })
     .catch((err) => {
-        console.error("❌ MySQL connection failed:", err.message);
+        console.error("âŒ MySQL connection failed:", err.message);
     });
 
 module.exports = promisePool;
+
+

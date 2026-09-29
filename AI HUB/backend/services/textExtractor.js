@@ -1,4 +1,4 @@
-const fs = require("fs");
+﻿const fs = require("fs");
 const path = require("path");
 const pdfParse = require("pdf-parse");
 const mammoth = require("mammoth");
@@ -42,3 +42,4 @@ async function extractText(filePath, originalname) {
 }
 
 module.exports = { extractText };
+

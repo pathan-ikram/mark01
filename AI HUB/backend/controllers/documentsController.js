@@ -1,4 +1,4 @@
-const { extractText } = require("../services/textExtractor");
+﻿const { extractText } = require("../services/textExtractor");
 const { analyzeDocument } = require("../services/aiAnalysis");
 const documentModel = require("../models/documentModel");
 
@@ -125,3 +125,5 @@ exports.getDocumentDetail = async (req, res) => {
     }
 
 };
+
+

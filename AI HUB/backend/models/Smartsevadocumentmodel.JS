@@ -1,4 +1,4 @@
-const db = require("../config/database");
+﻿const db = require("../config/database");
 
 async function saveDocument(data) {
     const sql = `
@@ -59,3 +59,5 @@ module.exports = {
     updateStatus,
     deleteDocument
 };
+
+

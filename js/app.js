@@ -1,10 +1,10 @@
-/* ============================================================
-   SmartSeva — app.js
+﻿/* ============================================================
+   SmartSeva â€” app.js
    Full platform logic: storage, customers, documents, timers
    ============================================================ */
 
-// ─── DATA ────────────────────────────────────────────────────
-console.log("✅ app.js Loaded");
+// â”€â”€â”€ DATA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+console.log("âœ… app.js Loaded");
 const SERVICE_DAYS = {
   'Income Certificate': 15,
   'Caste Certificate': 21,
@@ -30,7 +30,7 @@ const SERVICE_DOCS = {
   'PAN Card':               ['Aadhaar card', 'Passport photo', 'Signature on white paper'],
   'Aadhaar Update':         ['Proof of address', 'Proof of identity', 'Mobile number'],
   'PM Kisan Registration':  ['Aadhaar card', 'Land record (7/12)', 'Bank passbook', 'Mobile number'],
-  'Passport Application':   ['Aadhaar card', 'Birth certificate', 'Passport photo ×2', 'Police verification'],
+  'Passport Application':   ['Aadhaar card', 'Birth certificate', 'Passport photo Ã—2', 'Police verification'],
   'Driving License':        ['Aadhaar card', 'Passport photo', 'Signature', 'Medical certificate (Form 1A)'],
   'Scholarship':            ['Aadhaar card', 'Caste certificate', 'Income certificate', 'Previous year marksheet', 'Bank passbook'],
   'Property Record (7/12)': ['Application form', 'Previous record copy', 'Survey number details'],
@@ -38,18 +38,18 @@ const SERVICE_DOCS = {
   'Ayushman Bharat':        ['Aadhaar card', 'Ration card', 'Mobile number'],
   'Birth Certificate':      ['Hospital discharge summary', 'Parents Aadhaar', 'Application form'],
   'Death Certificate':      ['Hospital death summary', 'Applicant Aadhaar', 'Application form'],
-  'Marriage Certificate':   ['Both Aadhaar cards', 'Wedding photo', 'Witness details ×2', 'Marriage invitation card'],
+  'Marriage Certificate':   ['Both Aadhaar cards', 'Wedding photo', 'Witness details Ã—2', 'Marriage invitation card'],
 };
 
 const SERVICE_INFO = {
-  'Income Certificate':     { fee: '₹0 (free)', portal: 'aaplesarkar.mahaonline.gov.in' },
-  'Caste Certificate':      { fee: '₹0 (free)', portal: 'aaplesarkar.mahaonline.gov.in' },
-  'PAN Card':               { fee: '₹107 (online)', portal: 'onlineservices.nsdl.com' },
-  'Aadhaar Update':         { fee: '₹50', portal: 'uidai.gov.in' },
-  'PM Kisan Registration':  { fee: '₹0 (free)', portal: 'pmkisan.gov.in' },
-  'Passport Application':   { fee: '₹1500–3500', portal: 'passportindia.gov.in' },
-  'Driving License':        { fee: '₹200–500', portal: 'sarathi.parivahan.gov.in' },
-  'Scholarship':            { fee: '₹0 (free)', portal: 'mahadbt.maharashtra.gov.in' },
+  'Income Certificate':     { fee: 'â‚¹0 (free)', portal: 'aaplesarkar.mahaonline.gov.in' },
+  'Caste Certificate':      { fee: 'â‚¹0 (free)', portal: 'aaplesarkar.mahaonline.gov.in' },
+  'PAN Card':               { fee: 'â‚¹107 (online)', portal: 'onlineservices.nsdl.com' },
+  'Aadhaar Update':         { fee: 'â‚¹50', portal: 'uidai.gov.in' },
+  'PM Kisan Registration':  { fee: 'â‚¹0 (free)', portal: 'pmkisan.gov.in' },
+  'Passport Application':   { fee: 'â‚¹1500â€“3500', portal: 'passportindia.gov.in' },
+  'Driving License':        { fee: 'â‚¹200â€“500', portal: 'sarathi.parivahan.gov.in' },
+  'Scholarship':            { fee: 'â‚¹0 (free)', portal: 'mahadbt.maharashtra.gov.in' },
 };
 
 const PORTALS = [
@@ -61,7 +61,7 @@ const PORTALS = [
   { name: 'Passport Seva',      url: 'https://passportindia.gov.in',                  icon: 'fa-passport',         color: 'di-blue',  desc: 'Passport apply, renew, track' },
   { name: 'DigiLocker',         url: 'https://digilocker.gov.in',                     icon: 'fa-lock',             color: 'di-amber', desc: 'Digital document storage' },
   { name: 'PM Kisan',           url: 'https://pmkisan.gov.in',                        icon: 'fa-tractor',          color: 'di-green', desc: 'Farmer benefit registration' },
-  { name: 'Ayushman Bharat',    url: 'https://pmjay.gov.in',                          icon: 'fa-heart-pulse',      color: 'di-red',   desc: 'Health insurance — PMJAY' },
+  { name: 'Ayushman Bharat',    url: 'https://pmjay.gov.in',                          icon: 'fa-heart-pulse',      color: 'di-red',   desc: 'Health insurance â€” PMJAY' },
   { name: 'SARATHI DL',         url: 'https://sarathi.parivahan.gov.in',              icon: 'fa-car',              color: 'di-amber', desc: 'Driving license apply & renew' },
   { name: 'VAHAN (RC)',         url: 'https://vahan.parivahan.gov.in',                icon: 'fa-car-side',         color: 'di-purple', desc: 'Vehicle registration & RC' },
   { name: 'Income Tax',         url: 'https://incometax.gov.in',                      icon: 'fa-file-invoice-dollar', color: 'di-blue', desc: 'ITR filing & tax records' },
@@ -70,7 +70,7 @@ const PORTALS = [
   { name: 'Election Commission',url: 'https://voters.eci.gov.in',                     icon: 'fa-person-booth',     color: 'di-purple', desc: 'Voter ID, EPIC, registration' },
 ];
 
-// ─── DB ──────────────────────────────────────────────────────
+// â”€â”€â”€ DB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let DB = { customers: [], documents: [], settings: {}, income: [] };
 let draftTimer = null;
 let incomeFilter = 'today';
@@ -94,7 +94,7 @@ function saveDB() {
   try { localStorage.setItem('smartseva_db', JSON.stringify(DB)); } catch(e) {}
 }
 
-// ─── TOAST ───────────────────────────────────────────────────
+// â”€â”€â”€ TOAST â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function toast(msg, type = 'success') {
   const el = document.getElementById('toast');
   document.getElementById('toast-msg').textContent = msg;
@@ -109,7 +109,7 @@ function markDraft() {
   draftTimer = setTimeout(() => toast('Draft auto-saved'), 1400);
 }
 
-// ─── NAVIGATION ──────────────────────────────────────────────
+// â”€â”€â”€ NAVIGATION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function navTo(page) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   const navEl = document.querySelector(`.nav-item[data-page="${page}"]`);
@@ -138,7 +138,7 @@ function navTo(page) {
   if (page === 'receipt') populateReceiptSelect();
 }
 
-// ─── SETTINGS ────────────────────────────────────────────────
+// â”€â”€â”€ SETTINGS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function applySettings() {
   const s = DB.settings;
   if (s.kendra) document.getElementById('kendra-name-display').textContent = s.kendra;
@@ -166,7 +166,7 @@ function renderSettings() {
   applySettings();
   const bytes = JSON.stringify(DB).length;
   document.getElementById('storage-info').innerHTML = `
-    <b>${DB.customers.length}</b> customer${DB.customers.length !== 1 ? 's' : ''} stored &nbsp;·&nbsp;
+    <b>${DB.customers.length}</b> customer${DB.customers.length !== 1 ? 's' : ''} stored &nbsp;Â·&nbsp;
     <b>${DB.documents.length}</b> document${DB.documents.length !== 1 ? 's' : ''} stored<br>
     Storage used: ~${(bytes / 1024).toFixed(1)} KB of ~5 MB localStorage<br>
     <span style="color:var(--text-muted)">Data is saved in this browser only. Export feature coming soon.</span>
@@ -181,7 +181,7 @@ function clearAllData() {
   toast('All data cleared');
 }
 
-// ─── CUSTOMERS ───────────────────────────────────────────────
+// â”€â”€â”€ CUSTOMERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function saveCustomer() {
   const customer = {
     full_name: getVal('c-name').trim(),
@@ -220,7 +220,7 @@ async function saveCustomer() {
     await loadCustomers();
   } catch (err) {
     console.error('saveCustomer error:', err);
-    toast('Server connection failed — is the backend running?', 'error');
+    toast('Server connection failed â€” is the backend running?', 'error');
   }
 }
 
@@ -236,7 +236,7 @@ async function loadCustomers() {
     DB.customers = await res.json();
   } catch (err) {
     console.error('loadCustomers error:', err);
-    toast('Could not load customers — is the backend running?', 'error');
+    toast('Could not load customers â€” is the backend running?', 'error');
     DB.customers = DB.customers || [];
   }
   renderCustomers();
@@ -249,7 +249,7 @@ function docCountForCustomer(mobile) {
   return DB.documents.filter(d => d.mobile === mobile).length;
 }
 
-// Renders the customer list table — was missing entirely before.
+// Renders the customer list table â€” was missing entirely before.
 function renderCustomers(query) {
   const wrap = document.getElementById('cust-list-wrap');
   const countLabel = document.getElementById('cust-count-label');
@@ -279,7 +279,7 @@ function renderCustomers(query) {
       <div style="flex:1">
         <div style="font-size:13px;font-weight:600">${esc(c.full_name)}</div>
         <div style="font-size:11px;color:var(--text-muted)">
-          ${esc(c.mobile)}${c.caste ? ' · ' + esc(c.caste) : ''}${c.village ? ' · ' + esc(c.village) : ''}
+          ${esc(c.mobile)}${c.caste ? ' Â· ' + esc(c.caste) : ''}${c.village ? ' Â· ' + esc(c.village) : ''}
         </div>
       </div>
       <div style="font-size:11px;color:var(--text-muted)">${docCountForCustomer(c.mobile)} doc${docCountForCustomer(c.mobile) !== 1 ? 's' : ''}</div>
@@ -296,18 +296,18 @@ function showCustomerModal(id) {
   document.getElementById('modal-body').innerHTML = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
       ${mrow('Mobile', c.mobile)}
-      ${mrow('Aadhaar', c.aadhaar || '—')}
-      ${mrow('Date of birth', c.dob || '—')}
-      ${mrow('Caste', c.caste || '—')}
-      ${mrow("Father's name", c.father_name || '—')}
-      ${mrow('Email', c.email || '—')}
-      ${mrow('Village', c.village || '—')}
+      ${mrow('Aadhaar', c.aadhaar || 'â€”')}
+      ${mrow('Date of birth', c.dob || 'â€”')}
+      ${mrow('Caste', c.caste || 'â€”')}
+      ${mrow("Father's name", c.father_name || 'â€”')}
+      ${mrow('Email', c.email || 'â€”')}
+      ${mrow('Village', c.village || 'â€”')}
     </div>
     ${c.address ? `<div style="font-size:12px;color:var(--text-3);margin-bottom:16px"><b>Address:</b> ${esc(c.address)}</div>` : ''}
     <div style="font-size:13px;font-weight:600;margin-bottom:8px">Documents (${docs.length})</div>
     ${docs.length === 0 ? '<p style="font-size:12px;color:var(--text-muted)">No documents yet.</p>' :
       docs.map(d => `<div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid var(--border)">
-        <span>${esc(d.service)} — ${esc(d.submittedDate)}</span>
+        <span>${esc(d.service)} â€” ${esc(d.submittedDate)}</span>
         <span class="status-pill ${statusPillClass(d.status, d)}">${d.status}</span>
       </div>`).join('')
     }
@@ -334,7 +334,7 @@ async function deleteCustomer(id) {
     toast('Customer deleted');
   } catch (err) {
     console.error('deleteCustomer error:', err);
-    toast('Could not delete customer — is the backend running?', 'error');
+    toast('Could not delete customer â€” is the backend running?', 'error');
   }
 }
 
@@ -343,7 +343,7 @@ function closeModal() {
   document.getElementById('cust-modal').classList.remove('open');
 }
 
-// ─── DOCUMENT BUILDER ────────────────────────────────────────
+// â”€â”€â”€ DOCUMENT BUILDER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function prefillDoc(mobile) {
   navTo('new-doc');
   setVal('d-mobile', mobile);
@@ -368,7 +368,7 @@ function onDocMobileInput(val) {
         <div style="flex:1">
           <div style="font-size:13px;font-weight:600">${esc(c.full_name)}</div>
           <div style="font-size:11px;color:var(--text-muted)">
-            ${esc(c.mobile)}${c.caste ? ' · ' + esc(c.caste) : ''}${c.village ? ' · ' + esc(c.village) : ''}
+            ${esc(c.mobile)}${c.caste ? ' Â· ' + esc(c.caste) : ''}${c.village ? ' Â· ' + esc(c.village) : ''}
           </div>
         </div>
       </div>
@@ -480,12 +480,12 @@ async function saveDocument() {
       return;
     }
 
-    toast(`Document saved — timer set for ${days} days`);
+    toast(`Document saved â€” timer set for ${days} days`);
     clearDocForm();
     await loadDocuments();
   } catch (err) {
     console.error('saveDocument error:', err);
-    toast('Server connection failed — is the backend running?', 'error');
+    toast('Server connection failed â€” is the backend running?', 'error');
   }
 }
 
@@ -517,7 +517,7 @@ async function loadDocuments() {
     }));
   } catch (err) {
     console.error('loadDocuments error:', err);
-    toast('Could not load documents — is the backend running?', 'error');
+    toast('Could not load documents â€” is the backend running?', 'error');
     DB.documents = DB.documents || [];
   }
   updateNavBadges();
@@ -550,7 +550,7 @@ async function updateDocStatus(id, status) {
     toast('Status updated to ' + status);
   } catch (err) {
     console.error('updateDocStatus error:', err);
-    toast('Could not update status — is the backend running?', 'error');
+    toast('Could not update status â€” is the backend running?', 'error');
   }
 }
 
@@ -566,11 +566,11 @@ async function deleteDocument(id) {
     toast('Document deleted');
   } catch (err) {
     console.error('deleteDocument error:', err);
-    toast('Could not delete document — is the backend running?', 'error');
+    toast('Could not delete document â€” is the backend running?', 'error');
   }
 }
 
-// ─── RENDER HOME ─────────────────────────────────────────────
+// â”€â”€â”€ RENDER HOME â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function refreshHome() {
   if (document.getElementById('page-home').classList.contains('active')) renderHome();
 }
@@ -585,7 +585,7 @@ function renderHome() {
   document.getElementById('home-stats').innerHTML = `
     <div class="stat-card">
       <div class="stat-label">Today's income</div>
-      <div class="stat-val" style="color:var(--success)">₹${todayIncome.toLocaleString()}</div>
+      <div class="stat-val" style="color:var(--success)">â‚¹${todayIncome.toLocaleString()}</div>
       <div class="stat-sub">${todayDocs.length} doc${todayDocs.length !== 1 ? 's' : ''} today</div>
     </div>
     <div class="stat-card">
@@ -642,7 +642,7 @@ function renderHome() {
   }
 }
 
-// ─── RENDER DOCS ─────────────────────────────────────────────
+// â”€â”€â”€ RENDER DOCS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function renderDocs(filter) {
   if (filter) docsFilter = filter;
   let docs = [...DB.documents];
@@ -668,14 +668,14 @@ function docRowHTML(d, showActions) {
   return `<div class="doc-row">
     <div class="doc-icon ${iconColor}"><i class="fa-solid fa-file-lines"></i></div>
     <div class="doc-info" style="flex:1">
-      <div class="doc-name">${esc(d.customerName)} — ${esc(d.service)}</div>
-      <div class="doc-meta">${d.submittedDate}${d.fee ? ' · ₹' + d.fee : ''}${d.ref ? ' · ' + esc(d.ref) : ''}</div>
+      <div class="doc-name">${esc(d.customerName)} â€” ${esc(d.service)}</div>
+      <div class="doc-meta">${d.submittedDate}${d.fee ? ' Â· â‚¹' + d.fee : ''}${d.ref ? ' Â· ' + esc(d.ref) : ''}</div>
       ${d.status !== 'Done' ? `
         <div class="timer-bar"><div class="timer-fill ${tc.bar}" style="width:${pct}%"></div></div>
         <div class="timer-label" style="color:var(--${dl < 0 ? 'danger' : dl <= 3 ? 'warning' : 'text-muted'})">
-          ${dl < 0 ? 'Overdue by ' + Math.abs(dl) + ' day' + (Math.abs(dl) !== 1 ? 's' : '') : dl + ' day' + (dl !== 1 ? 's' : '') + ' left · Due ' + d.expectedDate}
+          ${dl < 0 ? 'Overdue by ' + Math.abs(dl) + ' day' + (Math.abs(dl) !== 1 ? 's' : '') : dl + ' day' + (dl !== 1 ? 's' : '') + ' left Â· Due ' + d.expectedDate}
         </div>` : `
-        <div class="timer-label" style="color:var(--success)"><i class="fa-solid fa-check"></i> Done${d.doneAt ? ' — ' + d.doneAt.split('T')[0] : ''}</div>`}
+        <div class="timer-label" style="color:var(--success)"><i class="fa-solid fa-check"></i> Done${d.doneAt ? ' â€” ' + d.doneAt.split('T')[0] : ''}</div>`}
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0">
       <span class="status-pill ${statusPillClass(d.status, d)}">${d.status}</span>
@@ -686,7 +686,7 @@ function docRowHTML(d, showActions) {
   </div>`;
 }
 
-// ─── RENDER TIMERS ───────────────────────────────────────────
+// â”€â”€â”€ RENDER TIMERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function renderTimers() {
   const active = DB.documents.filter(d => d.status !== 'Done');
   document.getElementById('timer-page-count').textContent = active.length + ' active';
@@ -717,8 +717,8 @@ function renderTimers() {
             ${dl < 0 ? 'Overdue ' + Math.abs(dl) + 'd' : dl + ' day' + (dl !== 1 ? 's' : '') + ' left'}
           </span>
         </div>
-        <div class="timer-service">${esc(d.service)}${d.ref ? ' · ' + esc(d.ref) : ''}</div>
-        <div class="timer-dates">Submitted: ${d.submittedDate} &nbsp;·&nbsp; Due: ${d.expectedDate}</div>
+        <div class="timer-service">${esc(d.service)}${d.ref ? ' Â· ' + esc(d.ref) : ''}</div>
+        <div class="timer-dates">Submitted: ${d.submittedDate} &nbsp;Â·&nbsp; Due: ${d.expectedDate}</div>
         <div class="big-timer-bar"><div class="timer-fill ${tc.bar}" style="width:${pct}%"></div></div>
         <div class="timer-day-info">
           <span>Day ${elapsed} of ${d.expectedDays || 14}</span>
@@ -732,7 +732,7 @@ function renderTimers() {
   }).join('');
 }
 
-// ─── RENDER INCOME ───────────────────────────────────────────
+// â”€â”€â”€ RENDER INCOME â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function renderIncome(filter) {
   if (filter) incomeFilter = filter;
   const todayStr = today();
@@ -754,26 +754,26 @@ function renderIncome(filter) {
   document.getElementById('income-stats').innerHTML = `
     <div class="stat-card">
       <div class="stat-label">Total income</div>
-      <div class="stat-val" style="color:var(--success)">₹${total.toLocaleString()}</div>
+      <div class="stat-val" style="color:var(--success)">â‚¹${total.toLocaleString()}</div>
       <div class="stat-sub">${docs.length} transaction${docs.length !== 1 ? 's' : ''}</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Top service</div>
-      <div class="stat-val" style="font-size:15px">${Object.keys(byService).sort((a,b)=>byService[b]-byService[a])[0] || '—'}</div>
+      <div class="stat-val" style="font-size:15px">${Object.keys(byService).sort((a,b)=>byService[b]-byService[a])[0] || 'â€”'}</div>
       <div class="stat-sub">${Object.keys(byService).length} service type${Object.keys(byService).length !== 1 ? 's' : ''}</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Avg per document</div>
-      <div class="stat-val">₹${docs.length ? Math.round(total / docs.length).toLocaleString() : 0}</div>
+      <div class="stat-val">â‚¹${docs.length ? Math.round(total / docs.length).toLocaleString() : 0}</div>
       <div class="stat-sub">per transaction</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Free services</div>
       <div class="stat-val">${DB.documents.filter(d => !d.fee || d.fee === 0).length}</div>
-      <div class="stat-sub">₹0 fee applied</div>
+      <div class="stat-sub">â‚¹0 fee applied</div>
     </div>`;
 
-  document.getElementById('income-total').textContent = '₹' + total.toLocaleString();
+  document.getElementById('income-total').textContent = 'â‚¹' + total.toLocaleString();
 
   if (docs.length === 0) {
     document.getElementById('income-list').innerHTML = `
@@ -785,13 +785,13 @@ function renderIncome(filter) {
     <div class="income-row">
       <div>
         <div style="font-size:13px;font-weight:600">${esc(d.service)}</div>
-        <div style="font-size:11px;color:var(--text-muted)">${esc(d.customerName)} · ${d.submittedDate}</div>
+        <div style="font-size:11px;color:var(--text-muted)">${esc(d.customerName)} Â· ${d.submittedDate}</div>
       </div>
-      <span class="income-amt">+₹${d.fee.toLocaleString()}</span>
+      <span class="income-amt">+â‚¹${d.fee.toLocaleString()}</span>
     </div>`).join('');
 }
 
-// ─── RENDER PORTALS ──────────────────────────────────────────
+// â”€â”€â”€ RENDER PORTALS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function renderPortals() {
   document.getElementById('portals-grid').innerHTML = PORTALS.map(p => `
     <a class="portal-card" href="${p.url}" target="_blank" rel="noopener">
@@ -802,11 +802,11 @@ function renderPortals() {
     </a>`).join('');
 }
 
-// ─── RECEIPT GENERATOR ───────────────────────────────────────
+// â”€â”€â”€ RECEIPT GENERATOR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function populateReceiptSelect() {
   const sel = document.getElementById('r-doc-select');
-  sel.innerHTML = '<option value="">— select a document —</option>' +
-    DB.documents.map(d => `<option value="${d.id}">${esc(d.customerName)} — ${esc(d.service)} (${d.submittedDate})</option>`).join('');
+  sel.innerHTML = '<option value="">â€” select a document â€”</option>' +
+    DB.documents.map(d => `<option value="${d.id}">${esc(d.customerName)} â€” ${esc(d.service)} (${d.submittedDate})</option>`).join('');
   setVal('r-date', today());
 }
 
@@ -840,14 +840,14 @@ function generateReceipt() {
         ${operator ? `<div class="r-sub">Operator: ${esc(operator)}</div>` : ''}
         ${DB.settings.village ? `<div class="r-sub">${esc(DB.settings.village)}</div>` : ''}
         ${DB.settings.mobile ? `<div class="r-sub">Mob: ${esc(DB.settings.mobile)}</div>` : ''}
-        <div class="r-sub" style="margin-top:6px;font-weight:700">RECEIPT / पावती</div>
+        <div class="r-sub" style="margin-top:6px;font-weight:700">RECEIPT / à¤ªà¤¾à¤µà¤¤à¥€</div>
       </div>
       <div class="r-row"><span>Receipt no.</span><span>${rcptNo}</span></div>
       <div class="r-row"><span>Date</span><span>${date}</span></div>
       <div class="r-row"><span>Customer</span><span>${esc(name)}</span></div>
       <div class="r-row"><span>Service</span><span>${esc(service)}</span></div>
       ${ref ? `<div class="r-row"><span>Reference no.</span><span>${esc(ref)}</span></div>` : ''}
-      <div class="r-row total"><span>Amount paid</span><span>₹${parseInt(amount || 0).toLocaleString()}</span></div>
+      <div class="r-row total"><span>Amount paid</span><span>â‚¹${parseInt(amount || 0).toLocaleString()}</span></div>
       <div class="r-footer">
         Thank you for using ${esc(kendra)}<br>
         Operator signature: _______________<br>
@@ -873,7 +873,7 @@ function printReceipt() {
   w.print();
 }
 
-// ─── GLOBAL SEARCH ───────────────────────────────────────────
+// â”€â”€â”€ GLOBAL SEARCH â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function initSearch() {
   const input = document.getElementById('global-search');
   const dd = document.getElementById('search-dropdown');
@@ -896,8 +896,8 @@ function initSearch() {
     if (docResults.length > 0) {
       html += `<div style="padding:5px 12px;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">Documents</div>`;
       html += docResults.map(d => `<div class="sd-item" onclick="navTo('docs');setTimeout(()=>renderDocs('all'),50);document.getElementById('global-search').value='';document.getElementById('search-dropdown').classList.remove('show')">
-        <div class="sd-label">${esc(d.customerName)} — ${esc(d.service)}</div>
-        <div class="sd-sub">${d.submittedDate} · ₹${d.fee || 0}</div>
+        <div class="sd-label">${esc(d.customerName)} â€” ${esc(d.service)}</div>
+        <div class="sd-sub">${d.submittedDate} Â· â‚¹${d.fee || 0}</div>
       </div>`).join('');
     }
     if (!html) html = `<div class="sd-item" style="color:var(--text-muted)">No results for "${esc(input.value)}"</div>`;
@@ -911,7 +911,7 @@ function initSearch() {
   });
 }
 
-// ─── NAV BADGES ──────────────────────────────────────────────
+// â”€â”€â”€ NAV BADGES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function updateNavBadges() {
   const pending = DB.documents.filter(d => d.status !== 'Done').length;
   const overdue = DB.documents.filter(d => d.status !== 'Done' && daysLeft(d) < 0).length;
@@ -925,13 +925,13 @@ function updateNavBadges() {
   timerBadge.style.display = overdue > 0 ? 'inline' : 'none';
 }
 
-// ─── REFRESH ALL ─────────────────────────────────────────────
+// â”€â”€â”€ REFRESH ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function refreshAll() {
   renderHome();
   updateNavBadges();
 }
 
-// ─── CLOCK ───────────────────────────────────────────────────
+// â”€â”€â”€ CLOCK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function updateClock() {
   const now = new Date();
   document.getElementById('topbar-time').textContent =
@@ -939,7 +939,7 @@ function updateClock() {
     ' ' + now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
 }
 
-// ─── HELPERS ─────────────────────────────────────────────────
+// â”€â”€â”€ HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function today() { return new Date().toISOString().split('T')[0]; }
 function getVal(id) { const el = document.getElementById(id); return el ? el.value : ''; }
 function setVal(id, val) { const el = document.getElementById(id); if (el) el.value = val; }
@@ -979,7 +979,7 @@ function serviceIconColor(svc) {
   return map[svc] || 'di-blue';
 }
 
-// ─── EVENT WIRING ─────────────────────────────────────────────
+// â”€â”€â”€ EVENT WIRING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.nav-item[data-page]').forEach(el => {
     el.addEventListener('click', () => navTo(el.dataset.page));
@@ -1024,3 +1024,5 @@ document.addEventListener('DOMContentLoaded', () => {
   setVal('r-date', today());
   loadDB();
 });
+
+

@@ -1,14 +1,14 @@
-const API_BASE = "http://10.230.22.186:3000/api";
+﻿const API_BASE = "http://10.143.172.186:3000/api";
 
 let documents = [];
 let selectedDocId = null;
 
-// ── Init ─────────────────────────────────────────────────────
+// â”€â”€ Init â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 document.addEventListener("DOMContentLoaded", () => {
     loadHistory();
 });
 
-// ── Load document history from backend ──────────────────────
+// â”€â”€ Load document history from backend â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function loadHistory() {
     try {
         const res = await fetch(`${API_BASE}/documents/history`);
@@ -27,7 +27,7 @@ async function loadHistory() {
     }
 }
 
-// ── Render document list ─────────────────────────────────────
+// â”€â”€ Render document list â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function renderDocList() {
     const container = document.getElementById("doc-list");
     const countBadge = document.getElementById("all-count");
@@ -39,10 +39,10 @@ function renderDocList() {
     if (documents.length === 0) {
         container.innerHTML = `
             <div class="empty-docs">
-                <div class="empty-icon">📄</div>
+                <div class="empty-icon">ðŸ“„</div>
                 <h3>No documents yet</h3>
                 <p>Upload a file or create a new document to get started</p>
-                <button class="btn btn-primary" onclick="switchTab('create', null)">✏️ Create Document</button>
+                <button class="btn btn-primary" onclick="switchTab('create', null)">âœï¸ Create Document</button>
             </div>
         `;
         return;
@@ -64,10 +64,10 @@ function renderDocList() {
         item.className = "doc-item";
         item.dataset.id = doc.id;
         item.innerHTML = `
-            <div class="doc-icon ${iconClass}">📄</div>
+            <div class="doc-icon ${iconClass}">ðŸ“„</div>
             <div class="doc-info">
                 <div class="doc-name">${escapeHtml(doc.original_name)}</div>
-                <div class="doc-meta">${date} · ${sizeKB} KB</div>
+                <div class="doc-meta">${date} Â· ${sizeKB} KB</div>
             </div>
             <div class="doc-actions">
                 <button class="doc-btn" onclick="event.stopPropagation(); openDocument(${doc.id})">Analyze</button>
@@ -79,7 +79,7 @@ function renderDocList() {
     });
 }
 
-// ── Stats ─────────────────────────────────────────────────────
+// â”€â”€ Stats â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function updateStats() {
     const totalEl = document.getElementById("stat-total");
     const wordsEl = document.getElementById("stat-words");
@@ -95,7 +95,7 @@ function updateStats() {
     }
 }
 
-// ── File upload (input + drag/drop) ─────────────────────────
+// â”€â”€ File upload (input + drag/drop) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function handleFileUpload(event) {
     const files = event.target.files;
     if (!files || files.length === 0) return;
@@ -133,7 +133,7 @@ async function uploadFiles(fileList) {
 }
 
 async function uploadSingleFile(file) {
-    showToast(`Uploading ${file.name}…`, "info");
+    showToast(`Uploading ${file.name}â€¦`, "info");
 
     const formData = new FormData();
     formData.append("document", file);
@@ -157,7 +157,7 @@ async function uploadSingleFile(file) {
     }
 }
 
-// ── Open a document → load full detail + analysis ───────────
+// â”€â”€ Open a document â†’ load full detail + analysis â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function openDocument(id) {
     selectedDocId = id;
 
@@ -207,7 +207,7 @@ function renderAnalysis(analysis) {
     for (const [key, value] of Object.entries(analysis)) {
         const label = key.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
         if (Array.isArray(value)) {
-            lines.push(`${label}:\n` + value.map((v) => `  • ${v}`).join("\n"));
+            lines.push(`${label}:\n` + value.map((v) => `  â€¢ ${v}`).join("\n"));
         } else {
             lines.push(`${label}: ${value}`);
         }
@@ -215,7 +215,7 @@ function renderAnalysis(analysis) {
     output.textContent = lines.join("\n\n");
 }
 
-// ── Delete document ──────────────────────────────────────────
+// â”€â”€ Delete document â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function deleteDocument(id) {
     if (!confirm("Delete this document? This cannot be undone.")) return;
 
@@ -231,11 +231,11 @@ async function deleteDocument(id) {
         showToast("Document deleted", "success");
         await loadHistory();
     } catch (err) {
-        showToast("Delete failed — check backend has a DELETE route", "error");
+        showToast("Delete failed â€” check backend has a DELETE route", "error");
     }
 }
 
-// ── AI Workspace actions (correct, simplify, translate, etc.) ─
+// â”€â”€ AI Workspace actions (correct, simplify, translate, etc.) â”€
 // Uses /api/chat with the currently selected document's text.
 async function aiAction(type) {
     if (!selectedDocId) {
@@ -295,7 +295,7 @@ async function aiAction(type) {
     }
 }
 
-// ── Output actions ───────────────────────────────────────────
+// â”€â”€ Output actions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function copyOutput() {
     const output = document.getElementById("ai-output");
     if (!output) return;
@@ -315,7 +315,7 @@ function saveAsNew() {
     showToast("Save as new document is not implemented yet", "info");
 }
 
-// ── Tabs & sidebar ────────────────────────────────────────────
+// â”€â”€ Tabs & sidebar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function switchTab(name, btn) {
     document.querySelectorAll(".tab-panel").forEach((p) => p.classList.remove("active"));
     document.querySelectorAll(".tab").forEach((t) => t.classList.remove("active"));
@@ -334,7 +334,7 @@ function switchSidebar(name, btn) {
     else switchTab("docs", null);
 }
 
-// ── Toast ─────────────────────────────────────────────────────
+// â”€â”€ Toast â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function showToast(message, type = "info") {
     const toast = document.getElementById("toast");
     if (!toast) return;
@@ -347,7 +347,7 @@ function showToast(message, type = "info") {
     }, 3000);
 }
 
-// ── Utility ───────────────────────────────────────────────────
+// â”€â”€ Utility â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function escapeHtml(str) {
     const div = document.createElement("div");
     div.textContent = str;
@@ -356,5 +356,6 @@ function escapeHtml(str) {
 
 function clearAll() {
     if (!confirm("Delete ALL documents? This cannot be undone.")) return;
-    showToast("Bulk delete not implemented yet — delete documents individually for now", "info");
+    showToast("Bulk delete not implemented yet â€” delete documents individually for now", "info");
 }
+

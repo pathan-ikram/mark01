@@ -1,6 +1,6 @@
-const API_BASE = "http://localhost:3000/api";
+﻿const API_BASE = "http://localhost:3000/api";
 
-// ── Helpers ──────────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function showError(msg) {
   const banner = document.getElementById('error-banner');
   banner.textContent = msg;
@@ -13,7 +13,7 @@ function hideError() {
 
 function setLoading(on) {
   document.getElementById('login-btn').disabled = on;
-  document.getElementById('btn-text').textContent = on ? 'Signing in…' : 'Sign in';
+  document.getElementById('btn-text').textContent = on ? 'Signing inâ€¦' : 'Sign in';
   document.getElementById('spinner').style.display = on ? 'block' : 'none';
 }
 
@@ -22,15 +22,15 @@ function markField(id, errorId, valid) {
   document.getElementById(errorId).style.display = valid ? 'none' : 'block';
 }
 
-// ── Toggle password visibility ───────────────────────────────
+// â”€â”€ Toggle password visibility â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 document.getElementById('toggle-pw').addEventListener('click', function () {
   const pw = document.getElementById('password');
   const isHidden = pw.type === 'password';
   pw.type = isHidden ? 'text' : 'password';
-  this.textContent = isHidden ? '🙈' : '👁';
+  this.textContent = isHidden ? 'ðŸ™ˆ' : 'ðŸ‘';
 });
 
-// ── Clear errors on input ────────────────────────────────────
+// â”€â”€ Clear errors on input â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 document.getElementById('email').addEventListener('input', function () {
   markField('email', 'email-error', true);
   hideError();
@@ -41,16 +41,16 @@ document.getElementById('password').addEventListener('input', function () {
   hideError();
 });
 
-// ── Rate limiting (3 attempts per minute) ────────────────────
+// â”€â”€ Rate limiting (3 attempts per minute) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let attempts = 0;
 let lockUntil = 0;
 
-// ── Redirect if already logged in ────────────────────────────
+// â”€â”€ Redirect if already logged in â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 if (localStorage.getItem('token')) {
   window.location.href = 'dashboard.html';
 }
 
-// ── Form submit ──────────────────────────────────────────────
+// â”€â”€ Form submit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 document.getElementById('login-form').addEventListener('submit', async function (e) {
   e.preventDefault();
   hideError();
@@ -108,3 +108,5 @@ document.getElementById('login-form').addEventListener('submit', async function 
     setLoading(false);
   }
 });
+
+

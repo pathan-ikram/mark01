@@ -1,14 +1,14 @@
-// ============================================================
-//  AI HUB — image.js
+﻿// ============================================================
+//  AI HUB â€” image.js
 //  Connected to ai-image.html + Pollinations AI (free, no key)
 // ============================================================
 
-// ── State ────────────────────────────────────────────────────
+// â”€â”€ State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let currentImageUrl = '';
 let currentPrompt   = '';
 let gallery         = JSON.parse(localStorage.getItem('aihub-gallery') || '[]');
 
-// ── On page load ─────────────────────────────────────────────
+// â”€â”€ On page load â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 document.addEventListener('DOMContentLoaded', () => {
     renderGallery();
 
@@ -27,13 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ── Set prompt from suggestion chips ─────────────────────────
+// â”€â”€ Set prompt from suggestion chips â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function setPrompt(text) {
     document.getElementById('prompt').value = text;
     document.getElementById('prompt').focus();
 }
 
-// ── Show/hide UI states ───────────────────────────────────────
+// â”€â”€ Show/hide UI states â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function setState(state) {
     document.getElementById('empty-state').style.display   = state === 'empty'   ? 'block' : 'none';
     document.getElementById('loading-state').style.display = state === 'loading' ? 'flex'  : 'none';
@@ -41,16 +41,16 @@ function setState(state) {
     document.getElementById('result-area').style.minHeight = state === 'result'  ? 'auto'  : '500px';
 }
 
-// ── Loading button state ──────────────────────────────────────
+// â”€â”€ Loading button state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function setLoading(on) {
     const btn = document.getElementById('gen-btn');
     btn.disabled = on;
     document.getElementById('btn-icon').style.display = on ? 'none'  : 'inline';
-    document.getElementById('btn-text').textContent   = on ? 'Generating…' : 'Generate Image';
+    document.getElementById('btn-text').textContent   = on ? 'Generatingâ€¦' : 'Generate Image';
     document.getElementById('spinner').style.display  = on ? 'block' : 'none';
 }
 
-// ── Toast notification ────────────────────────────────────────
+// â”€â”€ Toast notification â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function showToast(msg, duration = 3500) {
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -58,22 +58,22 @@ function showToast(msg, duration = 3500) {
     setTimeout(() => t.classList.remove('show'), duration);
 }
 
-// ── Copy prompt ───────────────────────────────────────────────
+// â”€â”€ Copy prompt â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function copyPrompt() {
     if (!currentPrompt) return;
     navigator.clipboard.writeText(currentPrompt).then(() => {
-        showToast('✅ Prompt copied to clipboard!');
+        showToast('âœ… Prompt copied to clipboard!');
     });
 }
 
-// ── MAIN: Generate image ──────────────────────────────────────
+// â”€â”€ MAIN: Generate image â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function generateImage() {
     const promptEl = document.getElementById('prompt');
     const prompt   = promptEl.value.trim();
 
     if (!prompt) {
         promptEl.focus();
-        showToast('⚠️ Please enter a prompt first!');
+        showToast('âš ï¸ Please enter a prompt first!');
         return;
     }
 
@@ -122,13 +122,13 @@ async function generateImage() {
     img.onerror = () => {
         setState('empty');
         setLoading(false);
-        showToast('❌ Failed to generate image. Check your connection and try again.');
+        showToast('âŒ Failed to generate image. Check your connection and try again.');
     };
 
     img.src = imageUrl;
 }
 
-// ── Gallery: save image ───────────────────────────────────────
+// â”€â”€ Gallery: save image â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function addToGallery() {
     if (!currentImageUrl) return;
 
@@ -149,10 +149,10 @@ function addToGallery() {
 
     localStorage.setItem('aihub-gallery', JSON.stringify(gallery));
     renderGallery();
-    showToast('✅ Saved to your gallery!');
+    showToast('âœ… Saved to your gallery!');
 }
 
-// ── Gallery: render ───────────────────────────────────────────
+// â”€â”€ Gallery: render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function renderGallery() {
     const grid  = document.getElementById('gallery-grid');
     const count = document.getElementById('gallery-count');
@@ -174,7 +174,7 @@ function renderGallery() {
     `).join('');
 }
 
-// ── Gallery: load item ────────────────────────────────────────
+// â”€â”€ Gallery: load item â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function loadFromGallery(index) {
     const item = gallery[index];
     if (!item) return;
@@ -190,3 +190,5 @@ function loadFromGallery(index) {
     setState('result');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+

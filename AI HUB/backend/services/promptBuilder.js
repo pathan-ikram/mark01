@@ -1,4 +1,4 @@
-function buildGeneralPrompt(text) {
+﻿function buildGeneralPrompt(text) {
     return `You must respond ONLY with valid JSON, no preamble, no explanation, no markdown fences. Follow this exact structure:
 
 {
@@ -56,3 +56,4 @@ module.exports = {
     buildResumePrompt,
     detectDocumentType
 };
+

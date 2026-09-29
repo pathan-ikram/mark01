@@ -1,4 +1,4 @@
-const express = require("express");
+﻿const express = require("express");
 const router = express.Router();
 
 const controller = require("../controllers/smartsevaDocumentController");
@@ -9,3 +9,4 @@ router.patch("/:id/status", controller.updateStatus);
 router.delete("/:id", controller.deleteDocument);
 
 module.exports = router;
+

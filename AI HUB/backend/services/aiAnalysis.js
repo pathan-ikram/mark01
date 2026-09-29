@@ -1,4 +1,4 @@
-const { generateJSON } = require("./ollamaService");
+﻿const { generateJSON } = require("./ollamaService");
 const { buildPrompt } = require("./promptBuilder");
 
 async function analyzeDocument(text, originalname) {
@@ -10,3 +10,4 @@ async function analyzeDocument(text, originalname) {
 }
 
 module.exports = { analyzeDocument };
+

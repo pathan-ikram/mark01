@@ -1,4 +1,4 @@
-const db = require("../config/database");
+﻿const db = require("../config/database");
 
 // Find user by email
 async function findByEmail(email) {
@@ -61,3 +61,5 @@ module.exports = {
     findById,
     createUser
 };
+
+

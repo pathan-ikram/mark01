@@ -1,4 +1,4 @@
-CREATE TABLE documents (
+﻿CREATE TABLE documents (
     id INT  PRIMARY KEY,
     user_id INT NULL,
     original_name VARCHAR(255),

@@ -1,4 +1,4 @@
-const db = require("../config/database");
+﻿const db = require("../config/database");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -243,3 +243,6 @@ console.log("LOGIN REQUEST RECEIVED");
     }
 
 };
+
+
+

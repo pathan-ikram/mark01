@@ -1,4 +1,4 @@
-@'
+﻿@'
 const db = require("../config/database");
 
 async function saveFile(data) {
@@ -100,3 +100,4 @@ module.exports = {
     renameFolder
 };
 '@ | Out-File -FilePath "C:\Users\sp833\mark01\AI HUB\backend\models\fileModel.js" -Encoding utf8
+
